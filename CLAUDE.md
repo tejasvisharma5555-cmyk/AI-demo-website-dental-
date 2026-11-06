@@ -83,10 +83,33 @@ docs/business-types/<type>.md         # what callers ask, must-handle scenarios,
 - What is missing or blocked, why, and the exact next step to unblock it.
 ```
 
+## Platforms and API keys
+
+Whenever the owner gives a platform and an API key, do all three, immediately:
+
+1. **Save the key to `.env`** as `<PLATFORM>_API_KEY=<key>` (e.g.
+   `RETELL_API_KEY`). Add the variable name, with no value, to `.env.example`.
+   `.env` is gitignored; confirm with `git check-ignore .env` before any commit.
+2. **Use the platform's REST API** for all build and deploy work. No
+   dashboards, no SDK-only workflows. Load the key from `.env`, never hardcode it.
+3. **Test the key with one API call**: a read-only call (e.g. list voices).
+   Report whether it worked (status code + what came back), then record the
+   endpoint, auth header format, and result in `docs/platforms/<platform>.md`.
+
+If the network blocks the platform's host, request access to that host and
+retry; never fake or mock the test result.
+
+### Known platforms
+
+| Platform | Use | Env var | API base |
+|---|---|---|---|
+| Retell | Voice | `RETELL_API_KEY` | `https://api.retellai.com` |
+
 ## Secrets
 
-Never commit API keys, passwords, or client credentials. Reference them by
-name in `decisions.md`; store them in the platform or environment settings.
+Never commit API keys, passwords, or client credentials. Keys live only in
+`.env` (gitignored). Reference them by variable name in `decisions.md` and
+`/docs`; never paste a key's value into any committed file.
 
 ## Skills
 
