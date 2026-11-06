@@ -102,10 +102,13 @@ Every time, without asking:
 ## Workflow
 
 1. Owner describes the client.
-2. Run the research-voice-platform change check (step 1 only); research the business
-   type; update `/docs`.
-3. Create `clients/<client-slug>/` from the template; write `brief.md` and `research.md`.
-4. Ask the owner up to six business questions (one batch).
+2. Run the research-voice-platform change check (step 1 only).
+3. Run **research-business-type**. It does four things:
+   - researches the industry and caches it in `docs/industries/`;
+   - creates `clients/<client-slug>/` from the template;
+   - writes `research.md` and drafts the call flow, prompt, and functions;
+   - ends by asking the owner up to six business questions in one batch.
+4. Fill in the owner's answers.
 5. Build the receptionist; test it.
 6. Deploy.
 7. Write `REPORT.md` and summarize Built / Assumed / Couldn't do.
@@ -134,3 +137,19 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Each entry: when to run it → 
     where a custom function is needed.
   - **Produces:** `docs/platforms/<platform>/` — `README.md`, `capabilities.md`,
     `api-cheatsheet.md`, `custom-functions.md`, `SOURCE.md`, `page-hashes.tsv`.
+
+- **research-business-type** (`.claude/skills/research-business-type/`)
+  - **Run:** at the start of every client build, right after the platform change check
+    and before asking the owner anything.
+  - **Does:** researches what calls to this kind of business sound like — what callers ask
+    for, what they need to book, and what gets transferred. Then drafts the call flow,
+    prompt, and functions, marking each function native, custom, or fallback against the
+    platform docs. Ends by asking the owner up to six questions only they would know
+    (rule 3).
+  - **Re-use:** reuses `docs/industries/<type>.md` if it was verified within ~90 days;
+    otherwise researches and updates it.
+  - **Produces:**
+    - `docs/industries/<type>.md` (reusable, no client data);
+    - `clients/<slug>/research.md` and `brief.md` (with the questions);
+    - `clients/<slug>/receptionist/` — `call-flow.md`, `prompt.md`, `functions.md`,
+      `knowledge-base.md`, `post-call.md`.
