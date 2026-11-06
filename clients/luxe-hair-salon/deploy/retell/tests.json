@@ -1,0 +1,252 @@
+[
+  {
+    "id": "test_case_e02c063dc565",
+    "name": "DEMO 01 booking: new client books women's haircut",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Maya Patel, a new client. You want a women's haircut this Saturday, any time in the morning. When offered times, pick the first one. Give your mobile as 631-555-0142 and email maya.patel@example.com. Confirm when asked.",
+    "metrics": [
+      "The agent checked availability before offering times.",
+      "The agent only offered times returned by the availability tool.",
+      "The agent collected name, mobile number, and email, and read the email back.",
+      "The agent confirmed the service, stylist Emma, day, and time and got a yes before calling book_womens_haircut.",
+      "The agent said the appointment was booked only after the booking tool succeeded."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_dd4dce0779a6",
+    "name": "DEMO 02 booking: rejects first options, corrects email",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Chris Romano. You want a blowout. Say none of the first times offered work and ask for Sunday instead; accept a Sunday time. Give email chris.romano@example.com but when the agent reads it back, say it's actually c.romano@example.com. Mobile 631-555-0199.",
+    "metrics": [
+      "The agent offered alternative times after the caller rejected the first options.",
+      "The agent used the corrected email c.romano@example.com when booking.",
+      "The agent called book_blowout only after the caller confirmed."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_632e9e53495c",
+    "name": "DEMO 03 booking: no availability",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Dana Whitfield. You want balayage this week. Accept whatever the agent suggests next. Your number is 631-555-0177.",
+    "metrics": [
+      "The agent did not invent any appointment times.",
+      "The agent offered another option such as a different date or taking a message for the team.",
+      "The agent did not claim an appointment was booked."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_4c34229c0743",
+    "name": "DEMO 04 booking: booking tool error",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Priya Shah. Book a men's haircut for your husband Raj Shah, first time offered. Email raj.shah@example.com, mobile 631-555-0133. Confirm when asked.",
+    "metrics": [
+      "After the booking tool returned an error, the agent did not say the appointment was booked.",
+      "The agent apologised and offered a fallback such as taking a message or trying another way.",
+      "The agent booked under the guest's name Raj Shah rather than the caller's name."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_ed6837644430",
+    "name": "DEMO 05 reschedule: balayage moved",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Jordan Lee. You have a balayage booked and need to move it to next week. Your booking email is jordan.lee@example.com. Pick the first new time offered and confirm.",
+    "metrics": [
+      "The agent asked for the booking email and called find_booking.",
+      "The agent read back the existing balayage appointment and confirmed it was the right one.",
+      "The agent checked availability with check_balayage before offering new times.",
+      "The agent called reschedule_booking with booking_uid demo-uid-balayage-1 after the caller confirmed."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_9a0c7c014e4e",
+    "name": "DEMO 06 cancel: short notice, no fee",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Jordan Lee (jordan.lee@example.com). You want to cancel your balayage. If the agent offers to reschedule, politely decline. Then confirm the cancellation.",
+    "metrics": [
+      "The agent offered to reschedule before cancelling.",
+      "The agent mentioned the 24-hour notice request kindly.",
+      "The agent did not say any cancellation fee would be charged.",
+      "The agent called cancel_booking only after the caller confirmed."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_cf4c5f17d815",
+    "name": "DEMO 07 cancel: booking not found",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Sam Ortiz (sam.ortiz@example.com). You want to cancel an appointment you think is on Friday. When the agent can't find it, agree to leave a message. Your number is 631-555-0188.",
+    "metrics": [
+      "The agent did not claim to cancel anything.",
+      "The agent offered to take a message for the salon team.",
+      "The agent said the team would follow up within one business day."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_f3d30259e1de",
+    "name": "DEMO 08 FAQ: hours, location, parking",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are a curious caller. Ask what the hours are on Monday and Sunday, what the address is, and whether there's parking. Then say thanks and goodbye.",
+    "metrics": [
+      "The agent said the salon is closed on Mondays and open Sunday 10 AM to 4 PM.",
+      "The agent did not invent a street address or phone number.",
+      "The agent said the salon team can confirm parking details."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_bd75c281eacf",
+    "name": "DEMO 09 FAQ: prices and unknown question",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "Ask how much balayage costs and how long it takes. Then ask whether they sell gift cards. Then say goodbye.",
+    "metrics": [
+      "The agent said balayage starts from $225 and takes about 3 hours.",
+      "The agent did not make up an answer about gift cards and offered that the team can confirm or take a message."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_3b553e7f1710",
+    "name": "DEMO 10 after hours: message for the team",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Elena Russo calling late on a Monday evening. You want to speak to someone about a wedding party booking for five people. Your number is the one you're calling from. Don't book anything.",
+    "metrics": [
+      "The agent said the salon is currently closed.",
+      "The agent collected the caller's name, confirmed the callback number, and got the reason.",
+      "The agent called save_message.",
+      "The agent said the salon team will follow up within one business day."
+    ],
+    "dynamic_variables": {
+      "current_time": "Monday, November 9, 2026 at 8:15 PM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_8e609568979e",
+    "name": "DEMO 11 after hours: still books",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Taylor Brooks calling on a Monday night. You want a deep conditioning treatment this Saturday. Take the first time. Email taylor.brooks@example.com, mobile 631-555-0166. Confirm.",
+    "metrics": [
+      "The agent mentioned the salon is closed but still offered to book.",
+      "The agent called check_deep_conditioning and then book_deep_conditioning after confirmation."
+    ],
+    "dynamic_variables": {
+      "current_time": "Monday, November 9, 2026 at 8:15 PM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_7d388b083f2c",
+    "name": "DEMO 12 stylist: Emma for highlights",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Lauren Kim, a new client. Ask to book full highlights with Emma. When the agent explains who does highlights, happily accept that stylist. If a consultation is suggested, say no thanks. Take the first time offered. Email lauren.kim@example.com, mobile 631-555-0111. Confirm once, then end the call politely.",
+    "metrics": [
+      "The agent explained kindly that Olivia does colour and highlights.",
+      "The agent recommended the free colour consultation for a new colour client.",
+      "The agent booked with book_full_highlights after confirmation."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  },
+  {
+    "id": "test_case_1cd5b4298bbe",
+    "name": "DEMO 13 reaction after service: urgent message",
+    "response_engine": {
+      "type": "retell-llm",
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    "user_prompt": "You are Nina Gold. You had colour done two days ago and your scalp is itchy and red. You want the owner to call you. Number 631-555-0155.",
+    "metrics": [
+      "The agent suggested seeing a pharmacist or doctor and did not diagnose.",
+      "The agent took a message and called save_message with urgency urgent.",
+      "The agent did not promise a refund or a free fix."
+    ],
+    "dynamic_variables": {
+      "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
+      "user_number": "+16315550142"
+    },
+    "tool_mocks": "23 mocks (all Cal.com tools)"
+  }
+]

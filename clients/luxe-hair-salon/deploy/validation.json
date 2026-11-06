@@ -1,0 +1,46 @@
+{
+  "validated_at": "2026-11-06T22:51:59Z",
+  "results": [
+    {
+      "check": "agent exists",
+      "ok": true,
+      "detail": "agent_7dd2e9e07fd10fc34d66dd5efb 'Luxe Hair Salon DEMO - Sophia'"
+    },
+    {
+      "check": "agent has a published version",
+      "ok": true,
+      "detail": "published versions: [0]"
+    },
+    {
+      "check": "Retell LLM exists",
+      "ok": true,
+      "detail": "llm_80272405ae8a1a3b94f223e76843"
+    },
+    {
+      "check": "functions registered",
+      "ok": true,
+      "detail": "registered: ['book_all_over_color', 'book_balayage', 'book_blowout', 'book_color_consultation', 'book_deep_conditioning', 'book_full_highlights', 'book_mens_haircut', 'book_partial_highlights', 'book_root_touch_up', 'book_womens_haircut', 'cancel_booking', 'check_all_over_color', 'check_balayage', 'check_blowout', 'check_color_consultation', 'check_deep_conditioning', 'check_full_highlights', 'check_mens_haircut', 'check_partial_highlights', 'check_root_touch_up', 'check_womens_haircut', 'end_call', 'find_booking', 'reschedule_booking', 'save_message']"
+    },
+    {
+      "check": "model configured",
+      "ok": true,
+      "detail": "{\"model\": \"claude-5.5-haiku\", \"tier\": \"standard\"}"
+    },
+    {
+      "check": "knowledge base knowledge_base_e67edd453c19686f ready",
+      "ok": true,
+      "detail": "complete"
+    },
+    {
+      "check": "integration app_e7c5b5d3ef6dc166798af57f authenticates",
+      "ok": true,
+      "detail": "success"
+    },
+    {
+      "check": "phone number attached",
+      "ok": true,
+      "skipped": true,
+      "detail": "Demo build: owner asked not to purchase a paid phone number."
+    }
+  ]
+}

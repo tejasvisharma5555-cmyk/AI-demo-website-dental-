@@ -1,0 +1,133 @@
+{
+  "request": {
+    "name": "Luxe Hair Salon (DEMO)",
+    "timeZone": "America/New_York",
+    "isDefault": false,
+    "availability": [
+      {
+        "days": [
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "startTime": "09:00",
+        "endTime": "19:00"
+      },
+      {
+        "days": [
+          "Saturday"
+        ],
+        "startTime": "09:00",
+        "endTime": "18:00"
+      },
+      {
+        "days": [
+          "Sunday"
+        ],
+        "startTime": "10:00",
+        "endTime": "16:00"
+      }
+    ],
+    "overrides": [
+      {
+        "date": "2026-11-26",
+        "startTime": "00:00",
+        "endTime": "00:01"
+      },
+      {
+        "date": "2026-12-25",
+        "startTime": "00:00",
+        "endTime": "00:01"
+      },
+      {
+        "date": "2027-01-01",
+        "startTime": "00:00",
+        "endTime": "00:01"
+      },
+      {
+        "date": "2027-05-31",
+        "startTime": "00:00",
+        "endTime": "00:01"
+      },
+      {
+        "date": "2027-07-04",
+        "startTime": "00:00",
+        "endTime": "00:01"
+      },
+      {
+        "date": "2027-09-06",
+        "startTime": "00:00",
+        "endTime": "00:01"
+      }
+    ]
+  },
+  "response": {
+    "status": "success",
+    "data": {
+      "id": 2609729,
+      "ownerId": 3412835,
+      "name": "Luxe Hair Salon (DEMO)",
+      "timeZone": "America/New_York",
+      "availability": [
+        {
+          "days": [
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "startTime": "09:00",
+          "endTime": "19:00"
+        },
+        {
+          "days": [
+            "Saturday"
+          ],
+          "startTime": "09:00",
+          "endTime": "18:00"
+        },
+        {
+          "days": [
+            "Sunday"
+          ],
+          "startTime": "10:00",
+          "endTime": "16:00"
+        }
+      ],
+      "isDefault": false,
+      "overrides": [
+        {
+          "date": "2026-11-26",
+          "startTime": "00:00",
+          "endTime": "00:01"
+        },
+        {
+          "date": "2026-12-25",
+          "startTime": "00:00",
+          "endTime": "00:01"
+        },
+        {
+          "date": "2027-01-01",
+          "startTime": "00:00",
+          "endTime": "00:01"
+        },
+        {
+          "date": "2027-05-31",
+          "startTime": "00:00",
+          "endTime": "00:01"
+        },
+        {
+          "date": "2027-07-04",
+          "startTime": "00:00",
+          "endTime": "00:01"
+        },
+        {
+          "date": "2027-09-06",
+          "startTime": "00:00",
+          "endTime": "00:01"
+        }
+      ]
+    }
+  }
+}

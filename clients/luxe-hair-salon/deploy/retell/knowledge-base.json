@@ -1,0 +1,29 @@
+{
+  "request": {
+    "knowledge_base_name": "Luxe Hair Salon DEMO",
+    "knowledge_base_texts": [
+      {
+        "title": "Luxe Hair Salon (DEMO) \u2014 salon information, services, prices, stylists, policies",
+        "text": "> **DEMO DATA.** Luxe Hair Salon is a fictional business. Every price, stylist, hour, and policy\n> below is fictional demo data supplied by the owner on 2026-11-06. There is no real address,\n> phone number, or website.\n\n**Q: What are your hours?**\nA: Tuesday to Friday 9 AM to 7 PM, Saturday 9 AM to 6 PM, Sunday 10 AM to 4 PM. Closed Mondays.\nAll times are New York time.\n\n**Q: Are you open on holidays?**\nA: We're closed on major US holidays: Thanksgiving, Christmas Day, New Year's Day, Memorial Day,\nIndependence Day, and Labor Day.\n\n**Q: Where are you located?**\nA: We're in Huntington, New York. The team can confirm the exact address when you book.\n\n**Q: Is there parking?**\nA: The salon team can confirm parking details for you.\n\n**Q: What services do you offer, and how much are they?**\nA: Prices are starting prices; colour depends on hair length and thickness.\n\n| Service | Price | Time |\n|---|---|---|\n| Women's haircut and styling | from $65 | about 60 minutes |\n| Men's haircut | from $35 | about 30 minutes |\n| Blowout | from $45 | about 45 minutes |\n| Root touch-up | from $85 | about 90 minutes |\n| All-over colour | from $120 | about 2 hours |\n| Partial highlights | from $150 | about 2.5 hours |\n| Full highlights | from $200 | about 3 hours |\n| Balayage | from $225 | about 3 hours |\n| Deep conditioning treatment | from $40 | about 30 minutes |\n| Colour consultation | free | 15 minutes |\n\n**Q: Who are your stylists?**\nA: Emma does haircuts and styling (women's cuts, men's cuts, blowouts). Olivia does colour and\nhighlights (root touch-ups, all-over colour, partial and full highlights, colour\nconsultations). Sophia does balayage and treatments (balayage, deep conditioning).\n\n**Q: Can I book with a specific stylist?**\nA: Yes. Each service is done by its specialist stylist, so you can ask for them or just take the\nnext available appointment.\n\n**Q: Do I need a consultation before colour?**\nA: For new colour clients, we recommend a free 15-minute colour consultation before a major\ncolour change.\n\n**Q: Do I need a patch test?**\nA: The salon team will confirm whether a patch test is needed for your service.\n\n**Q: What's your cancellation policy?**\nA: We ask for at least 24 hours' notice to cancel or reschedule. There's no cancellation fee.\n\n**Q: Do I need to pay a deposit?**\nA: No, deposits aren't required.\n\n**Q: What if I'm running late?**\nA: If you're more than 15 minutes late, we may need to reschedule your appointment.\n\n**Q: How do I reach a person?**\nA: I can take a message and the salon team will follow up within one business day.\n\n**Not in the demo data \u2014 answer \"the salon team can confirm that for you\":** payment methods,\ngift cards, products used, kids' cuts, extensions, keratin, weddings and events, parking."
+      }
+    ]
+  },
+  "response": {
+    "knowledge_base_id": "knowledge_base_e67edd453c19686f",
+    "knowledge_base_name": "Luxe Hair Salon DEMO",
+    "auto_crawling_paths": [],
+    "enable_auto_refresh": false,
+    "status": "in_progress",
+    "user_modified_timestamp": 1794005199648,
+    "ingestion_limits": {
+      "files": 25,
+      "texts": 50,
+      "urls": 200
+    },
+    "remaining_ingestion_quota": {
+      "files": 50,
+      "texts": 99,
+      "urls": 700
+    }
+  }
+}

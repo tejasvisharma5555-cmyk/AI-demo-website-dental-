@@ -1,0 +1,225 @@
+{
+  "request": {
+    "agent_name": "Luxe Hair Salon DEMO - Sophia",
+    "voice_id": "retell-Marissa",
+    "language": "en-US",
+    "timezone": "America/New_York",
+    "boosted_keywords": [
+      "Luxe",
+      "balayage",
+      "blowout",
+      "highlights",
+      "Emma",
+      "Olivia",
+      "Sophia",
+      "Huntington",
+      "root touch-up",
+      "deep conditioning"
+    ],
+    "post_call_analysis_data": [
+      {
+        "type": "enum",
+        "name": "call_reason",
+        "description": "Main reason for the call.",
+        "choices": [
+          "book",
+          "reschedule",
+          "cancel",
+          "question",
+          "message",
+          "spam",
+          "other"
+        ]
+      },
+      {
+        "type": "boolean",
+        "name": "appointment_booked",
+        "description": "A new appointment was successfully booked."
+      },
+      {
+        "type": "string",
+        "name": "service",
+        "description": "Service discussed or booked."
+      },
+      {
+        "type": "string",
+        "name": "appointment_time",
+        "description": "Booked or new appointment time, if any."
+      },
+      {
+        "type": "enum",
+        "name": "booking_change",
+        "description": "Whether an existing booking was changed.",
+        "choices": [
+          "rescheduled",
+          "cancelled",
+          "none"
+        ]
+      },
+      {
+        "type": "string",
+        "name": "caller_name",
+        "description": "Caller's name, if given."
+      },
+      {
+        "type": "string",
+        "name": "callback_number",
+        "description": "Callback number, if given."
+      },
+      {
+        "type": "string",
+        "name": "message",
+        "description": "Message for the salon team, if one was taken."
+      },
+      {
+        "type": "enum",
+        "name": "urgency",
+        "description": "urgent only for a reaction after a service or a same-day problem.",
+        "choices": [
+          "normal",
+          "urgent"
+        ]
+      },
+      {
+        "type": "boolean",
+        "name": "after_hours",
+        "description": "The call happened while the salon was closed."
+      },
+      {
+        "type": "string",
+        "name": "unanswered_question",
+        "description": "Any question Sophia could not answer."
+      }
+    ],
+    "data_storage_setting": "everything",
+    "data_storage_retention_days": 90,
+    "end_call_after_silence_ms": 30000,
+    "max_call_duration_ms": 900000,
+    "interruption_sensitivity": 0.9,
+    "version_title": "DEMO build",
+    "version_description": "Luxe Hair Salon fictional demo receptionist"
+  },
+  "response": {
+    "agent_id": "agent_7dd2e9e07fd10fc34d66dd5efb",
+    "channel": "voice",
+    "last_modification_timestamp": 1794005485973,
+    "agent_name": "Luxe Hair Salon DEMO - Sophia",
+    "version_description": "Luxe Hair Salon fictional demo receptionist",
+    "response_engine": {
+      "llm_id": "llm_80272405ae8a1a3b94f223e76843",
+      "type": "retell-llm",
+      "version": 0
+    },
+    "language": "en-US",
+    "data_storage_setting": "everything",
+    "data_storage_retention_days": 90,
+    "contact_memory_config": {
+      "enable_read": true,
+      "enable_update": false
+    },
+    "opt_in_signed_url": false,
+    "end_call_after_silence_ms": 30000,
+    "version": 0,
+    "assigned_tags": [],
+    "is_published": false,
+    "version_title": "DEMO build",
+    "post_call_analysis_model": "gpt-5.6-terra",
+    "pii_config": {
+      "categories": [],
+      "mode": "post_call"
+    },
+    "timezone": "America/New_York",
+    "post_call_analysis_data": [
+      {
+        "type": "enum",
+        "name": "call_reason",
+        "description": "Main reason for the call.",
+        "choices": [
+          "book",
+          "reschedule",
+          "cancel",
+          "question",
+          "message",
+          "spam",
+          "other"
+        ]
+      },
+      {
+        "type": "boolean",
+        "name": "appointment_booked",
+        "description": "A new appointment was successfully booked."
+      },
+      {
+        "type": "string",
+        "name": "service",
+        "description": "Service discussed or booked."
+      },
+      {
+        "type": "string",
+        "name": "appointment_time",
+        "description": "Booked or new appointment time, if any."
+      },
+      {
+        "type": "enum",
+        "name": "booking_change",
+        "description": "Whether an existing booking was changed.",
+        "choices": [
+          "rescheduled",
+          "cancelled",
+          "none"
+        ]
+      },
+      {
+        "type": "string",
+        "name": "caller_name",
+        "description": "Caller's name, if given."
+      },
+      {
+        "type": "string",
+        "name": "callback_number",
+        "description": "Callback number, if given."
+      },
+      {
+        "type": "string",
+        "name": "message",
+        "description": "Message for the salon team, if one was taken."
+      },
+      {
+        "type": "enum",
+        "name": "urgency",
+        "description": "urgent only for a reaction after a service or a same-day problem.",
+        "choices": [
+          "normal",
+          "urgent"
+        ]
+      },
+      {
+        "type": "boolean",
+        "name": "after_hours",
+        "description": "The call happened while the salon was closed."
+      },
+      {
+        "type": "string",
+        "name": "unanswered_question",
+        "description": "Any question Sophia could not answer."
+      }
+    ],
+    "voice_id": "retell-Marissa",
+    "max_call_duration_ms": 900000,
+    "interruption_sensitivity": 0.9,
+    "boosted_keywords": [
+      "Luxe",
+      "balayage",
+      "blowout",
+      "highlights",
+      "Emma",
+      "Olivia",
+      "Sophia",
+      "Huntington",
+      "root touch-up",
+      "deep conditioning"
+    ],
+    "allow_user_dtmf": true,
+    "user_dtmf_options": {}
+  }
+}

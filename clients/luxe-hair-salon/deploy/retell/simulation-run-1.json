@@ -1,0 +1,78 @@
+{
+  "batch": {
+    "test_case_batch_job_id": "test_batch_d6bdc48b32a6",
+    "status": "complete",
+    "pass_count": 9,
+    "fail_count": 3,
+    "error_count": 1,
+    "total_count": 13
+  },
+  "note": "Run 1 against draft prompt. Fixes applied afterwards (closed-hours rule, always offer reschedule; tests 06 and 12 rewritten). Re-run blocked: Retell credit balance exhausted (HTTP 402).",
+  "runs": [
+    {
+      "name": "DEMO 01 booking: new client books women's haircut",
+      "status": "pass",
+      "explanation": "The agent checked Emma\u2019s availability before offering slots and offered only returned Saturday-morning slots. It collected Maya Patel\u2019s name, mobile number, and email, then read back the email. It confirmed the women\u2019s haircut, Emma, Saturday November 14, and 10:00 AM and received affirmative consent before booking. It stated the appointment was booked only after the booking tool returned success."
+    },
+    {
+      "name": "DEMO 02 booking: rejects first options, corrects email",
+      "status": "pass",
+      "explanation": "The agent offered alternatives after rejected times (including a different day/time), used c.romano@example.com in the booking tool call, and invoked book_blowout only after the caller explicitly confirmed: \u201cYes, please go ahead and book it.\u201d"
+    },
+    {
+      "name": "DEMO 03 booking: no availability",
+      "status": "pass",
+      "explanation": "The agent only reported availability based on tool results and did not invent appointment times. It offered alternatives, including checking later dates and taking a message for the team. It never claimed that an appointment was booked; it saved a callback message instead."
+    },
+    {
+      "name": "DEMO 04 booking: booking tool error",
+      "status": "pass",
+      "explanation": "After both booking attempts returned 503 errors, the agent clearly stated that Raj\u2019s appointment could not be booked and never claimed it was confirmed. The agent apologized and offered retries and a callback/message fallback, then took and updated the message. Both booking tool calls used the guest name \"Raj Shah,\" not the caller\u2019s name."
+    },
+    {
+      "name": "DEMO 05 reschedule: balayage moved",
+      "status": "pass",
+      "explanation": "The agent obtained the booking email and called find_booking, read back the existing balayage appointment and proceeded as the correct booking, checked availability via check_balayage before offering times, and called reschedule_booking with booking_uid demo-uid-balayage-1 after the caller selected and confirmed the new time."
+    },
+    {
+      "name": "DEMO 06 cancel: short notice, no fee",
+      "status": "fail",
+      "explanation": "The agent mentioned the 24-hour notice policy and waited for explicit confirmation before calling cancel_booking. However, the agent did not offer to reschedule; it only acknowledged the caller's statement that they did not want to reschedule. Additionally, it explicitly mentioned that there was no cancellation fee, which violates the criterion not to mention a cancellation fee."
+    },
+    {
+      "name": "DEMO 07 cancel: booking not found",
+      "status": "pass",
+      "explanation": "The agent did not claim to cancel the appointment, offered to take a message for the salon team, and stated that the team would follow up within one business day."
+    },
+    {
+      "name": "DEMO 08 FAQ: hours, location, parking",
+      "status": "pass",
+      "explanation": "The agent stated the salon is closed Mondays and open Sundays 10 AM\u20134 PM, did not provide an invented street address or salon phone number, and said the salon team can confirm parking details."
+    },
+    {
+      "name": "DEMO 09 FAQ: prices and unknown question",
+      "status": "pass",
+      "explanation": "The agent stated that balayage starts at $225 and takes about three hours. For gift cards, the agent explicitly said they did not have that information and offered to take a message for the salon team to follow up."
+    },
+    {
+      "name": "DEMO 10 after hours: message for the team",
+      "status": "fail",
+      "explanation": "The agent collected the caller\u2019s name, confirmed the callback number, captured the reason, called save_message, and promised follow-up within one business day. However, the agent never said that the salon is currently closed."
+    },
+    {
+      "name": "DEMO 11 after hours: still books",
+      "status": "fail",
+      "explanation": "The agent did call check_deep_conditioning and, after the user confirmed the selected slot and contact details, called book_deep_conditioning successfully. However, the agent never mentioned that the salon was closed while offering to book, so criterion 1 was not met."
+    },
+    {
+      "name": "DEMO 12 stylist: Emma for highlights",
+      "status": "error",
+      "explanation": "Ending the conversation early as there might be a loop."
+    },
+    {
+      "name": "DEMO 13 reaction after service: urgent message",
+      "status": "pass",
+      "explanation": "The agent advised Nina to see a pharmacist or doctor without diagnosing, saved an urgent message with the requested callback details, and made no promise of a refund or free fix."
+    }
+  ]
+}

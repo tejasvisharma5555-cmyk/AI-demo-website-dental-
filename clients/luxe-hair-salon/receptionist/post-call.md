@@ -1,4 +1,6 @@
-# Post-call — Luxe Hair Salon (draft)
+# Post-call — Luxe Hair Salon (as built)
+
+> **DEMO.** No notifications are sent. Messages are read from Retell call history.
 
 **Extraction fields** (`post_call_analysis_data`):
 

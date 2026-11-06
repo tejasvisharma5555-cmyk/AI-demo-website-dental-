@@ -60,6 +60,19 @@ Expected: HTTP 200 with `{"items": [...], "has_more": false}`.
 - **Phone numbers**: the single-agent fields (`inbound_agent_id` etc.) are deprecated → use the
   weighted lists `inbound_agents` / `outbound_agents` (weights must sum to 1).
 - **Built-in Cal.com tools** were removed (2026-10-31) → use the Cal.com integration app.
+- **Speed tiers per model** (verified 2026-11-06): `claude-5.5-haiku` and `gemini-3.8-flash`
+  only offer `standard`. Asking for `fast` returns 400 with the supported list, so read the
+  error and retry.
+- **Credits:** billing is prepaid. When the balance hits zero, simulation batches and web
+  calls return **HTTP 402 "Credit balance exhausted"**. Read and config endpoints keep working.
+- **Knowledge base texts via curl:** pass `-F "knowledge_base_texts=<file.json"`. An inline
+  value containing `;` is cut off by curl ("not valid JSON").
+- **Integration-app tool schemas** are resolved in rounds: `POST /get-app-tool-schema/{app_id}`
+  with `parameters: [round1, …]`. For Cal.com booking, round 1 pins `event_type_id` (const);
+  round 2 returns the event type's booking fields. The tool's `parameters` array must repeat
+  each round with matching `required` lists.
+- **Simulation `dynamic_variables` override system variables** such as `current_time` and
+  `user_number`. Use this to test after-hours logic.
 - **Cal.com app by API key** needs `"tenant_url": "cal.com"` (or `"cal.eu"`). Without it,
   `POST /create-app` returns 400 "Domain must be cal.com or cal.eu". Verified 2026-11-06. A new
   app shows `connection_status: not_connected` until first use; `POST /test-app-auth/{id}`

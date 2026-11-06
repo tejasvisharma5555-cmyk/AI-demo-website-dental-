@@ -147,6 +147,10 @@ def main():
         inbound = [a.get("agent_id") for a in (p.get("inbound_agents") or [])] if st == 200 else []
         record("phone number routes to agent", st == 200 and agent_id in inbound,
                f"{num} → {inbound}" if st == 200 else f"HTTP {st}")
+    elif ids.get("phone_number_skipped_reason"):
+        results.append({"check": "phone number attached", "ok": True, "skipped": True,
+                        "detail": ids["phone_number_skipped_reason"]})
+        print(f"SKIP  phone number attached — {ids['phone_number_skipped_reason']}")
     else:
         record("phone number attached", False, "no phone_number in ids.json")
 

@@ -23,6 +23,13 @@ description: Validate a client's AI receptionist after every build — confirm t
 }
 ```
 
+If a number was deliberately not attached (for example a demo), set `"phone_number": null`
+and `"phone_number_skipped_reason": "<why>"`. The check then shows as SKIP instead of FAIL.
+
+If Retell returns **402 (credits exhausted)** for the simulation batch or web call, record it
+under Couldn't do with a top-up walkthrough. Keep the last completed batch's results in
+`deploy/retell/simulation-run-N.json`.
+
 If `ids.json` is missing or incomplete, rebuild it from the files in `deploy/retell/` and from
 `GET` calls to the API before validating.
 

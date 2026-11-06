@@ -1,5 +1,9 @@
 # Research — Luxe Hair Salon
 
+> **DEMO CLIENT — fictional business.** The owner confirmed on 2026-11-06 that Luxe Hair Salon is
+> fictional. All business facts in `brief.md` are demo data. The web research below found no
+> real salon by this name, as expected.
+
 Last updated: 2026-11-06. Industry background: `docs/industries/hair-salon.md`.
 Platform: Retell (`docs/platforms/retell/`; docs unchanged since 2026-11-06).
 
@@ -19,8 +23,8 @@ Platform: Retell (`docs/platforms/retell/`; docs unchanged since 2026-11-06).
 ## What the Cal.com account shows (read via API, 2026-11-06)
 - Key works (`GET /v2/me` → 200). Account "DIALPILOT AI", username `dialpilot`.
 - **Profile timezone is Asia/Kolkata.** The salon is in New York. Booking times follow the
-  event's schedule (New York), but confirmation emails may show India time → fix during the
-  build (set the profile or event timezone to America/New_York).
+  Luxe schedule (New York); host-side emails may show India time. **Left unchanged:** the
+  account is shared, and the owner said not to modify other businesses' setup.
 - **One event type only:** "15 min meeting" (15 min, Cal Video, $0). No salon services yet →
   the build creates one event type per service group.
 - **One schedule: "avant garde salon Florida"** (America/New_York): Sun–Mon 10–6, Tue 9–7,
@@ -29,7 +33,16 @@ Platform: Retell (`docs/platforms/retell/`; docs unchanged since 2026-11-06).
   Luxe-only.
 - Required booking fields: name, email (plus optional notes) → the agent must collect an email.
 
-## What's already done
+## Build decisions after the owner's answers
+- 10 demo event types (one per service, named with its specialist stylist) on a new
+  non-default schedule, "Luxe Hair Salon (DEMO)". Avant Garde's schedule and the generic
+  "15 min meeting" are untouched.
+- **Limitation:** one Cal.com user = one calendar. All Luxe services (and the other business on
+  the shared account) share busy time, so two stylists can't be booked at the same hour. Real
+  per-stylist calendars need Cal.com Teams.
+- No owner notifications (demo instruction). Messages stay in Retell call history.
+
+## What was done first
 - Cal.com is connected to Retell as a native integration: app `app_e7c5b5d3ef6dc166798af57f`.
   The auth test passed (`deploy/retell/calcom-app.json`).
 
