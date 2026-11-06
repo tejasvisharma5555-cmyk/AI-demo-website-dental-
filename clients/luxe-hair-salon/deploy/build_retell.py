@@ -69,7 +69,7 @@ def tools():
                                 "end_time": desc("End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."),
                                 "timezone": {"type": "string", "const": TZ}}}],
             "speak_during_execution": True, "execution_message_type": "static_text",
-            "execution_message_description": "Let me check the schedule for you.",
+            "execution_message_description": "One sec.",
         })
         out.append({
             "type": "integration_app", "name": f"book_{key}", "app_id": APP_ID, "provider": "calcom",
@@ -89,7 +89,7 @@ def tools():
                  }},
             ],
             "speak_during_execution": True, "execution_message_type": "static_text",
-            "execution_message_description": "One moment while I book that for you.",
+            "execution_message_description": "One sec.",
         })
     out += [
         {"type": "integration_app", "name": "find_booking", "app_id": APP_ID, "provider": "calcom",
@@ -102,7 +102,7 @@ def tools():
                              "end_time": desc("Three months from now, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS."),
                              "timezone": {"type": "string", "const": TZ}}}],
          "speak_during_execution": True, "execution_message_type": "static_text",
-         "execution_message_description": "Let me look that up."},
+         "execution_message_description": "One sec."},
         {"type": "integration_app", "name": "reschedule_booking", "app_id": APP_ID, "provider": "calcom",
          "app_tool_template_name": "reschedule_calcom_booking",
          "description": "Move the caller's confirmed booking to a new time that the service's check tool returned and the caller agreed to.",
@@ -113,7 +113,7 @@ def tools():
                              "timezone": {"type": "string", "const": TZ},
                              "reschedule_reason": desc("A short reason from the conversation.")}}],
          "speak_during_execution": True, "execution_message_type": "static_text",
-         "execution_message_description": "One moment while I move that for you."},
+         "execution_message_description": "One sec."},
         {"type": "integration_app", "name": "cancel_booking", "app_id": APP_ID, "provider": "calcom",
          "app_tool_template_name": "cancel_calcom_booking",
          "description": "Cancel the caller's confirmed booking, only after offering to reschedule and getting a clear yes to cancel.",
@@ -144,17 +144,34 @@ def main():
     tl = tools()
     llm_body = {
         "general_prompt": prompt,
-        "begin_message": "Thanks for calling Luxe Hair Salon, this is Sophia, the salon's virtual assistant. Just so you know, this call may be recorded. How can I help you today?",
+        "begin_message": None,  # unset = LLM generates the greeting (see prompt "Greeting"), so it can say when closed
         "start_speaker": "agent",
         "model_config": {"type": "cascading",
                          "primary": {"model": "claude-5.5-haiku", "tier": "standard"},
                          "backup": {"model": "gemini-3.8-flash", "tier": "standard"},
                          "temperature": 0.3},
-        "knowledge_base_ids": [kb],
+        "knowledge_base_ids": [],  # removed: all facts are in the prompt; KB chunks were being read as caller speech
         "general_tools": tl,
     }
+    draft_version, llm_version = None, None
+    if ids.get("agent_id"):
+        # Published versions are frozen: edit a draft. Reuse the newest draft, or create one from the newest version.
+        st, vers = api("GET", f"/list-agent-versions/{ids['agent_id']}")
+        items = sorted(vers.get("items", []), key=lambda v: v["version"])
+        latest = items[-1]
+        if latest.get("is_published"):
+            st, draft = api("POST", f"/create-agent-version/{ids['agent_id']}", {"base_version": latest["version"]})
+            print("new draft version", st, draft.get("version"), "" if st < 300 else draft)
+            if st >= 300:
+                return 1
+        else:
+            st, draft = api("GET", f"/get-agent/{ids['agent_id']}?version={latest['version']}")
+        draft_version = draft["version"]
+        llm_version = (draft.get("response_engine") or {}).get("version")
+        ids["draft_version"] = draft_version
     if ids.get("llm_id"):
-        st, llm = api("PATCH", f"/update-retell-llm/{ids['llm_id']}", llm_body)
+        q = f"?version={llm_version}" if llm_version is not None else ""
+        st, llm = api("PATCH", f"/update-retell-llm/{ids['llm_id']}{q}", llm_body)
     else:
         st, llm = api("POST", "/create-retell-llm", llm_body)
     print("llm", st, llm.get("llm_id"), "" if st < 300 else llm)
@@ -188,13 +205,14 @@ def main():
         "data_storage_retention_days": 90,
         "end_call_after_silence_ms": 30000,
         "max_call_duration_ms": 900000,
-        "interruption_sensitivity": 0.9,
+        "interruption_sensitivity": 0.6,
         "version_title": "DEMO build",
         "version_description": "Luxe Hair Salon fictional demo receptionist",
     }
     if ids.get("agent_id"):
         agent_body.pop("response_engine")
-        st, agent = api("PATCH", f"/update-agent/{ids['agent_id']}", agent_body)
+        q = f"?version={draft_version}" if draft_version is not None else ""
+        st, agent = api("PATCH", f"/update-agent/{ids['agent_id']}{q}", agent_body)
     else:
         st, agent = api("POST", "/create-agent", agent_body)
     print("agent", st, agent.get("agent_id"), "" if st < 300 else agent)
@@ -206,7 +224,7 @@ def main():
         "client_name": "Luxe Hair Salon (DEMO)",
         "demo": True,
         "agent_id": agent["agent_id"],
-        "knowledge_base_ids": [kb],
+        "knowledge_base_ids": [],
         "app_ids": [APP_ID],
         "phone_number": None,
         "phone_number_skipped_reason": "Demo build: owner asked not to purchase a paid phone number.",

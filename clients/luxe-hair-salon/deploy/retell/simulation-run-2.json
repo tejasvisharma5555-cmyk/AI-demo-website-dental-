@@ -1,0 +1,83 @@
+{
+  "batch": {
+    "test_case_batch_job_id": "test_batch_afb5bbfb88c7",
+    "status": "complete",
+    "pass_count": 14,
+    "fail_count": 0,
+    "error_count": 0,
+    "total_count": 14
+  },
+  "agent_version": 1,
+  "runs": [
+    {
+      "name": "DEMO 01 booking: new client books women's haircut",
+      "status": "pass",
+      "explanation": "The agent checked availability before offering 10:00 and 11:30, and both were returned by the tool. It did not re-ask for details already provided. It confirmed the booking details once, including the women's haircut, Emma, Saturday, and 10:00 AM, received confirmation, then called the booking tool. It stated the appointment was set only after the booking tool succeeded."
+    },
+    {
+      "name": "DEMO 02 booking: rejects first options, corrects email",
+      "status": "pass",
+      "explanation": "After the caller rejected 10 AM and 2 PM, the agent offered 11:30 AM and 12 PM. The booking used the corrected email, c.romano@example.com. The agent invoked book_blowout only after the caller confirmed the appointment details."
+    },
+    {
+      "name": "DEMO 03 booking: no availability",
+      "status": "pass",
+      "explanation": "The agent checked availability before responding, did not invent specific appointment times, offered alternatives (other days, next week, later in the month, and a message for the team), and never claimed an appointment was booked."
+    },
+    {
+      "name": "DEMO 04 booking: booking tool error",
+      "status": "pass",
+      "explanation": "The booking attempts returned 503 errors, and the agent never claimed the appointment was booked. The agent apologized and offered to retry or take a message, then saved a follow-up message. Both booking attempts used the guest name \"Raj Shah,\" not the caller's name."
+    },
+    {
+      "name": "DEMO 05 reschedule: balayage moved",
+      "status": "pass",
+      "explanation": "The agent requested and used the booking email with find_booking, read back the balayage appointment and obtained confirmation, checked availability via check_balayage before offering times, and after the caller selected a slot, called reschedule_booking with booking_uid \"demo-uid-balayage-1\"."
+    },
+    {
+      "name": "DEMO 06 cancel: short notice, no fee",
+      "status": "pass",
+      "explanation": "The caller explicitly declined rescheduling, so no reschedule offer was required. The agent kindly mentioned the 24-hour notice request, stated that there was no fee, and invoked cancel_booking only after the caller confirmed cancellation."
+    },
+    {
+      "name": "DEMO 07 cancel: booking not found",
+      "status": "pass",
+      "explanation": "The agent did not claim the appointment was canceled; it only noted the cancellation request. It offered to take a message (\u201cI'll take that message for you\u201d) and stated that the team would follow up within one business day."
+    },
+    {
+      "name": "DEMO 08 FAQ: hours, location, parking",
+      "status": "pass",
+      "explanation": "The agent stated that the salon is closed on Mondays and open Sundays from 10 AM to 4 PM, did not provide any invented address or phone number, and said the salon team can confirm parking details."
+    },
+    {
+      "name": "DEMO 09 FAQ: prices and unknown question",
+      "status": "pass",
+      "explanation": "The agent stated that balayage starts at $225 and takes about 3 hours. For gift cards, it explicitly said it did not have information and that the salon team could confirm, without inventing an answer."
+    },
+    {
+      "name": "DEMO 10 after hours: message for the team",
+      "status": "pass",
+      "explanation": "The agent stated the salon was closed, collected Elena Russo's name, confirmed the callback number, obtained the booking reason/details, invoked save_message successfully, and said the team would follow up within one business day."
+    },
+    {
+      "name": "DEMO 11 after hours: still books",
+      "status": "pass",
+      "explanation": "The agent stated that the salon was closed and offered to book appointments. It then called check_deep_conditioning, presented available times, received the caller\u2019s selection, and called book_deep_conditioning to confirm the booking."
+    },
+    {
+      "name": "DEMO 12 stylist: Emma for highlights",
+      "status": "pass",
+      "explanation": "The agent stated that full highlights are done by Olivia, did not ask the caller to repeat email or phone details, confirmed the appointment details, and then successfully used book_full_highlights."
+    },
+    {
+      "name": "DEMO 13 reaction after service: urgent message",
+      "status": "pass",
+      "explanation": "The agent advised contacting a pharmacist or doctor without diagnosing, saved the caller\u2019s message with urgency marked as urgent, and did not promise a refund or free fix."
+    },
+    {
+      "name": "DEMO 14 brevity: no repeated confirmations",
+      "status": "pass",
+      "explanation": "The agent did not repeat any confirmation request, did not mention reference text, knowledge, or instructions, and every reply was two sentences or fewer. It offered only two returned availability times, and it called book_mens_haircut immediately after the caller\u2019s first affirmative confirmation."
+    }
+  ]
+}

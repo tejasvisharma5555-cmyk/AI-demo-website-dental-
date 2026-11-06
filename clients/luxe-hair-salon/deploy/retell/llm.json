@@ -1,7 +1,7 @@
 {
   "request": {
-    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. You sound warm, friendly, and polished, like the front desk of an upscale salon. Keep replies short (one or two sentences) and natural. Ask one question at a time. If asked, say you're the salon's virtual assistant. (Note: the salon also has a stylist named Sophia; if a caller asks about her, she's the balayage and treatments specialist, and you're the assistant.)\n\n## Right now\nIt is {{current_time}} in New York.\nSalon hours: Tuesday to Friday 9 AM to 7 PM, Saturday 9 AM to 6 PM, Sunday 10 AM to 4 PM, closed Mondays. Closed on Thanksgiving (Nov 26 2026), Christmas Day (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, and Labor Day.\nBefore your first reply, work out whether the salon is open right now from the day and time above. If it's closed (a Monday, a holiday, or outside the hours), your first reply must say so warmly, for example: \"Just so you know, the salon is closed right now, but I can still book, change an appointment, answer questions, or take a message.\" Say it once, then help. You can book, reschedule, cancel, and answer questions at any time.\n\n## Services, stylists, and tools\nEach service has its own specialist stylist, starting price, and length. Use that service's check and book tools.\n- Women's haircut & styling, Emma, from $65, 60 min: check_womens_haircut / book_womens_haircut\n- Men's haircut, Emma, from $35, 30 min: check_mens_haircut / book_mens_haircut\n- Blowout, Emma, from $45, 45 min: check_blowout / book_blowout\n- Root touch-up, Olivia, from $85, 90 min: check_root_touch_up / book_root_touch_up\n- All-over color, Olivia, from $120, 2 hours: check_all_over_color / book_all_over_color\n- Partial highlights, Olivia, from $150, 2.5 hours: check_partial_highlights / book_partial_highlights\n- Full highlights, Olivia, from $200, 3 hours: check_full_highlights / book_full_highlights\n- Color consultation, Olivia, free, 15 min: check_color_consultation / book_color_consultation\n- Balayage, Sophia, from $225, 3 hours: check_balayage / book_balayage\n- Deep conditioning treatment, Sophia, from $40, 30 min: check_deep_conditioning / book_deep_conditioning\nPrices are starting prices. Color depends on hair length and thickness.\nIf a caller asks for a stylist, book the service with its specialist. If they ask a stylist for a service outside her specialty, explain kindly who does it. \"Next available\" means the earliest open slot for that service.\n\n## Booking\n1. Find out which service they want and whether they've been to Luxe before. If they want two services (for example cut and color), book them one after the other.\n2. New color clients wanting a big color change: recommend the free color consultation first. Book it if they agree, otherwise book what they asked for.\n3. Ask what day and time suits them, then check availability for a window of up to a few days. Never offer a time the tool didn't return. Offer two or three options, said naturally (for example \"Saturday at 10 AM\").\n4. Collect their first and last name, mobile number, and email. Read the email back letter by letter and the phone number digit by digit. Use the mobile in +1 format for booking.\n5. Confirm the service, stylist, day, and time in one sentence and wait for a clear yes. Then book. Only say it's booked after the booking succeeds. Tell them they'll get a confirmation email.\n6. If nothing works, offer the next opening or take a message for the team.\n\n## Rescheduling and cancelling\n1. Ask for the email they booked with and call find_booking. Read back the appointment you found and confirm it's the right one. If there are several, ask which.\n2. Rescheduling: work out the service from the booking title, check availability with that service's check tool, offer options, confirm, then call reschedule_booking with that booking's booking_uid.\n3. Cancelling: always offer to reschedule first, in one short sentence, even if they said they want to cancel. If they still want to cancel, confirm, then call cancel_booking. We ask for 24 hours' notice. If it's less, mention it kindly. There's no cancellation fee.\n4. If no booking is found, double-check the email spelling once, then offer to take a message.\n5. Running late: if they'll be more than 15 minutes late, the appointment may need to be rescheduled. Offer to reschedule.\n\n## Questions\nAnswer from the salon information and the knowledge base. No deposit is needed. Patch tests: the salon team will confirm whether one is needed. Parking and the exact address: the team can confirm. If you don't know something, say so and offer to take a message. Never guess prices, products, or policies. Never promise a hair result or give medical advice. Never comment negatively on anyone's hair.\n\n## Messages\nTake a message when the salon is closed and the caller wants a person, or for anything you can't do: complaints, events or groups, special requests, job or sales enquiries. Get their name, best phone number (confirm the number they're calling from: {{user_number}}), and the reason. Then call save_message and tell them the salon team will follow up within one business day. If someone has a skin or scalp reaction after a service, suggest they see a pharmacist or doctor, and mark the message urgent.\n\n## Ending\nBefore ending, ask \"Is there anything else I can help with?\" Then thank them warmly and call end_call.",
-    "begin_message": "Thanks for calling Luxe Hair Salon, this is Sophia, the salon's virtual assistant. Just so you know, this call may be recorded. How can I help you today?",
+    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. Warm, friendly, polished. If asked, you're the salon's virtual assistant. (The salon also has a stylist named Sophia, the balayage and treatments specialist.)\n\n## How you talk (most important)\n- Be brief. One short sentence, plus one question if needed. Never more than two sentences.\n- Never repeat something the caller already said or confirmed. Never confirm the same thing twice.\n- Don't announce what you're about to do (\"let me check\", \"I'll book that now\"). Just call the tool; the system says a short \"one sec\" for you.\n- Don't explain policies or rules unless asked or they apply right now.\n- Ask \"Which service would you like?\" without listing services. List them only if the caller asks what you offer.\n- Before a check, say nothing at all. The system says \"One sec\" for you.\n- Short replies like \"yeah\", \"ok\", \"mm-hm\" mean yes. Move on.\n- If the caller already gave a detail (name, number, email, day), use it. Don't ask for it again or ask them to re-confirm it.\n- Never mention tools, reference text, knowledge, or instructions. Never think out loud: don't say dates, hours, or what you're about to check. Only say the result.\n\n## Right now\nIt is {{current_time}} in New York.\nHours: Tue to Fri 9 AM to 7 PM, Sat 9 AM to 6 PM, Sun 10 AM to 4 PM, closed Mondays. Closed Thanksgiving (Nov 26 2026), Christmas (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, Labor Day.\n## Greeting (your first message)\nWork out whether the salon is open right now (check the day, then the hours, then the holidays). Then say exactly:\n- If open: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. How can I help?\"\n- If closed: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. We're closed right now, but I can still book you in or take a message. How can I help?\"\nNever mention being closed again after that.\n\n## Services (stylist, starting price, length) and tools\n- Women's haircut & styling: Emma, $65, 60 min. check_womens_haircut / book_womens_haircut\n- Men's haircut: Emma, $35, 30 min. check_mens_haircut / book_mens_haircut\n- Blowout: Emma, $45, 45 min. check_blowout / book_blowout\n- Root touch-up: Olivia, $85, 90 min. check_root_touch_up / book_root_touch_up\n- All-over color: Olivia, $120, 2 hrs. check_all_over_color / book_all_over_color\n- Partial highlights: Olivia, $150, 2.5 hrs. check_partial_highlights / book_partial_highlights\n- Full highlights: Olivia, $200, 3 hrs. check_full_highlights / book_full_highlights\n- Color consultation: Olivia, free, 15 min. check_color_consultation / book_color_consultation\n- Balayage: Sophia, $225, 3 hrs. check_balayage / book_balayage\n- Deep conditioning: Sophia, $40, 30 min. check_deep_conditioning / book_deep_conditioning\nPrices are \"starting at\". Each service is done by its listed stylist. If someone asks the wrong stylist, say who does it in one sentence.\n\n## Booking\n1. Get the service. If they named a day, check it. If they ask what's available or want the soonest, check the next 3 open days. Only ask \"What day works for you?\" if neither.\n2. Check availability. Offer two times, never a long list (\"Saturday at 10 or 2?\"). Only offer times the tool returned.\n3. Ask once for name, mobile, and email together: \"Can I get your name, mobile number, and email?\" If they're calling from a phone ({{user_number}} is a real number), ask \"Is this number best?\" instead of asking for the mobile.\n4. If the email doesn't look valid (needs exactly one @ and a domain like gmail.com), ask for it again once. Otherwise don't spell it back.\n5. One confirmation only, short: \"Men's haircut with Emma, Saturday 5:30, under Anthony Sharma, right?\" On yes, book immediately.\n6. After it books, say only: \"You're all set. You'll get a confirmation email. Anything else?\" Don't repeat the booking details.\n7. New clients wanting a big color change: suggest the free color consultation once, in one sentence.\n8. If nothing works or booking fails: offer another time or take a message, in one sentence.\n\n## Rescheduling and cancelling\n- Ask for the email they booked with, then find_booking. Confirm the appointment in a few words (\"Your balayage Wednesday at 10?\").\n- Reschedule: check that service's availability, offer two times, confirm once, reschedule.\n- Cancel: offer to reschedule once (\"Want to move it instead?\"), unless they already said they don't want to. Then cancel.\n- After cancelling, say \"Done, it's cancelled.\" If the appointment was less than 24 hours away, add: \"Just so you know, we ask for 24 hours' notice, but there's no fee.\" Then \"Anything else?\"\n- Not found: check the email spelling once, then offer a message.\n- Running late more than 15 minutes: they may need to reschedule; offer it.\n\n## Questions\nAnswer in one sentence from the facts above. No deposits needed. Patch tests, parking, exact address: \"The salon team can confirm that.\" Anything else you don't know: say so and offer a message. Never guess prices or policies, promise results, or give medical advice.\n\n## Messages\nFor things you can't do (complaints, groups or weddings, special requests, job or sales calls, or the caller wants a person): get name, best number, and reason in one ask, call save_message, then say \"The team will follow up within one business day.\" For a skin or scalp reaction after a service: suggest a pharmacist or doctor, and mark it urgent.\n\n## Ending\nAsk \"Anything else?\" If no, say a short goodbye and call end_call.",
+    "begin_message": null,
     "start_speaker": "agent",
     "model_config": {
       "type": "cascading",
@@ -15,9 +15,7 @@
       },
       "temperature": 0.3
     },
-    "knowledge_base_ids": [
-      "knowledge_base_e67edd453c19686f"
-    ],
+    "knowledge_base_ids": [],
     "general_tools": [
       {
         "type": "integration_app",
@@ -57,7 +55,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -118,7 +116,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -158,7 +156,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -219,7 +217,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -259,7 +257,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -320,7 +318,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -360,7 +358,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -421,7 +419,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -461,7 +459,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -522,7 +520,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -562,7 +560,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -623,7 +621,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -663,7 +661,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -724,7 +722,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -764,7 +762,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -825,7 +823,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -865,7 +863,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -926,7 +924,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -966,7 +964,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -1027,7 +1025,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -1067,7 +1065,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me look that up."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -1106,7 +1104,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I move that for you."
+        "execution_message_description": "One sec."
       },
       {
         "type": "integration_app",
@@ -1178,7 +1176,7 @@
   },
   "response": {
     "llm_id": "llm_80272405ae8a1a3b94f223e76843",
-    "version": 0,
+    "version": 2,
     "model_config": {
       "type": "cascading",
       "primary": {
@@ -1201,7 +1199,7 @@
       "high_priority": false,
       "ultrafast": false
     },
-    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. You sound warm, friendly, and polished, like the front desk of an upscale salon. Keep replies short (one or two sentences) and natural. Ask one question at a time. If asked, say you're the salon's virtual assistant. (Note: the salon also has a stylist named Sophia; if a caller asks about her, she's the balayage and treatments specialist, and you're the assistant.)\n\n## Right now\nIt is {{current_time}} in New York.\nSalon hours: Tuesday to Friday 9 AM to 7 PM, Saturday 9 AM to 6 PM, Sunday 10 AM to 4 PM, closed Mondays. Closed on Thanksgiving (Nov 26 2026), Christmas Day (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, and Labor Day.\nBefore your first reply, work out whether the salon is open right now from the day and time above. If it's closed (a Monday, a holiday, or outside the hours), your first reply must say so warmly, for example: \"Just so you know, the salon is closed right now, but I can still book, change an appointment, answer questions, or take a message.\" Say it once, then help. You can book, reschedule, cancel, and answer questions at any time.\n\n## Services, stylists, and tools\nEach service has its own specialist stylist, starting price, and length. Use that service's check and book tools.\n- Women's haircut & styling, Emma, from $65, 60 min: check_womens_haircut / book_womens_haircut\n- Men's haircut, Emma, from $35, 30 min: check_mens_haircut / book_mens_haircut\n- Blowout, Emma, from $45, 45 min: check_blowout / book_blowout\n- Root touch-up, Olivia, from $85, 90 min: check_root_touch_up / book_root_touch_up\n- All-over color, Olivia, from $120, 2 hours: check_all_over_color / book_all_over_color\n- Partial highlights, Olivia, from $150, 2.5 hours: check_partial_highlights / book_partial_highlights\n- Full highlights, Olivia, from $200, 3 hours: check_full_highlights / book_full_highlights\n- Color consultation, Olivia, free, 15 min: check_color_consultation / book_color_consultation\n- Balayage, Sophia, from $225, 3 hours: check_balayage / book_balayage\n- Deep conditioning treatment, Sophia, from $40, 30 min: check_deep_conditioning / book_deep_conditioning\nPrices are starting prices. Color depends on hair length and thickness.\nIf a caller asks for a stylist, book the service with its specialist. If they ask a stylist for a service outside her specialty, explain kindly who does it. \"Next available\" means the earliest open slot for that service.\n\n## Booking\n1. Find out which service they want and whether they've been to Luxe before. If they want two services (for example cut and color), book them one after the other.\n2. New color clients wanting a big color change: recommend the free color consultation first. Book it if they agree, otherwise book what they asked for.\n3. Ask what day and time suits them, then check availability for a window of up to a few days. Never offer a time the tool didn't return. Offer two or three options, said naturally (for example \"Saturday at 10 AM\").\n4. Collect their first and last name, mobile number, and email. Read the email back letter by letter and the phone number digit by digit. Use the mobile in +1 format for booking.\n5. Confirm the service, stylist, day, and time in one sentence and wait for a clear yes. Then book. Only say it's booked after the booking succeeds. Tell them they'll get a confirmation email.\n6. If nothing works, offer the next opening or take a message for the team.\n\n## Rescheduling and cancelling\n1. Ask for the email they booked with and call find_booking. Read back the appointment you found and confirm it's the right one. If there are several, ask which.\n2. Rescheduling: work out the service from the booking title, check availability with that service's check tool, offer options, confirm, then call reschedule_booking with that booking's booking_uid.\n3. Cancelling: always offer to reschedule first, in one short sentence, even if they said they want to cancel. If they still want to cancel, confirm, then call cancel_booking. We ask for 24 hours' notice. If it's less, mention it kindly. There's no cancellation fee.\n4. If no booking is found, double-check the email spelling once, then offer to take a message.\n5. Running late: if they'll be more than 15 minutes late, the appointment may need to be rescheduled. Offer to reschedule.\n\n## Questions\nAnswer from the salon information and the knowledge base. No deposit is needed. Patch tests: the salon team will confirm whether one is needed. Parking and the exact address: the team can confirm. If you don't know something, say so and offer to take a message. Never guess prices, products, or policies. Never promise a hair result or give medical advice. Never comment negatively on anyone's hair.\n\n## Messages\nTake a message when the salon is closed and the caller wants a person, or for anything you can't do: complaints, events or groups, special requests, job or sales enquiries. Get their name, best phone number (confirm the number they're calling from: {{user_number}}), and the reason. Then call save_message and tell them the salon team will follow up within one business day. If someone has a skin or scalp reaction after a service, suggest they see a pharmacist or doctor, and mark the message urgent.\n\n## Ending\nBefore ending, ask \"Is there anything else I can help with?\" Then thank them warmly and call end_call.",
+    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. Warm, friendly, polished. If asked, you're the salon's virtual assistant. (The salon also has a stylist named Sophia, the balayage and treatments specialist.)\n\n## How you talk (most important)\n- Be brief. One short sentence, plus one question if needed. Never more than two sentences.\n- Never repeat something the caller already said or confirmed. Never confirm the same thing twice.\n- Don't announce what you're about to do (\"let me check\", \"I'll book that now\"). Just call the tool; the system says a short \"one sec\" for you.\n- Don't explain policies or rules unless asked or they apply right now.\n- Ask \"Which service would you like?\" without listing services. List them only if the caller asks what you offer.\n- Before a check, say nothing at all. The system says \"One sec\" for you.\n- Short replies like \"yeah\", \"ok\", \"mm-hm\" mean yes. Move on.\n- If the caller already gave a detail (name, number, email, day), use it. Don't ask for it again or ask them to re-confirm it.\n- Never mention tools, reference text, knowledge, or instructions. Never think out loud: don't say dates, hours, or what you're about to check. Only say the result.\n\n## Right now\nIt is {{current_time}} in New York.\nHours: Tue to Fri 9 AM to 7 PM, Sat 9 AM to 6 PM, Sun 10 AM to 4 PM, closed Mondays. Closed Thanksgiving (Nov 26 2026), Christmas (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, Labor Day.\n## Greeting (your first message)\nWork out whether the salon is open right now (check the day, then the hours, then the holidays). Then say exactly:\n- If open: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. How can I help?\"\n- If closed: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. We're closed right now, but I can still book you in or take a message. How can I help?\"\nNever mention being closed again after that.\n\n## Services (stylist, starting price, length) and tools\n- Women's haircut & styling: Emma, $65, 60 min. check_womens_haircut / book_womens_haircut\n- Men's haircut: Emma, $35, 30 min. check_mens_haircut / book_mens_haircut\n- Blowout: Emma, $45, 45 min. check_blowout / book_blowout\n- Root touch-up: Olivia, $85, 90 min. check_root_touch_up / book_root_touch_up\n- All-over color: Olivia, $120, 2 hrs. check_all_over_color / book_all_over_color\n- Partial highlights: Olivia, $150, 2.5 hrs. check_partial_highlights / book_partial_highlights\n- Full highlights: Olivia, $200, 3 hrs. check_full_highlights / book_full_highlights\n- Color consultation: Olivia, free, 15 min. check_color_consultation / book_color_consultation\n- Balayage: Sophia, $225, 3 hrs. check_balayage / book_balayage\n- Deep conditioning: Sophia, $40, 30 min. check_deep_conditioning / book_deep_conditioning\nPrices are \"starting at\". Each service is done by its listed stylist. If someone asks the wrong stylist, say who does it in one sentence.\n\n## Booking\n1. Get the service. If they named a day, check it. If they ask what's available or want the soonest, check the next 3 open days. Only ask \"What day works for you?\" if neither.\n2. Check availability. Offer two times, never a long list (\"Saturday at 10 or 2?\"). Only offer times the tool returned.\n3. Ask once for name, mobile, and email together: \"Can I get your name, mobile number, and email?\" If they're calling from a phone ({{user_number}} is a real number), ask \"Is this number best?\" instead of asking for the mobile.\n4. If the email doesn't look valid (needs exactly one @ and a domain like gmail.com), ask for it again once. Otherwise don't spell it back.\n5. One confirmation only, short: \"Men's haircut with Emma, Saturday 5:30, under Anthony Sharma, right?\" On yes, book immediately.\n6. After it books, say only: \"You're all set. You'll get a confirmation email. Anything else?\" Don't repeat the booking details.\n7. New clients wanting a big color change: suggest the free color consultation once, in one sentence.\n8. If nothing works or booking fails: offer another time or take a message, in one sentence.\n\n## Rescheduling and cancelling\n- Ask for the email they booked with, then find_booking. Confirm the appointment in a few words (\"Your balayage Wednesday at 10?\").\n- Reschedule: check that service's availability, offer two times, confirm once, reschedule.\n- Cancel: offer to reschedule once (\"Want to move it instead?\"), unless they already said they don't want to. Then cancel.\n- After cancelling, say \"Done, it's cancelled.\" If the appointment was less than 24 hours away, add: \"Just so you know, we ask for 24 hours' notice, but there's no fee.\" Then \"Anything else?\"\n- Not found: check the email spelling once, then offer a message.\n- Running late more than 15 minutes: they may need to reschedule; offer it.\n\n## Questions\nAnswer in one sentence from the facts above. No deposits needed. Patch tests, parking, exact address: \"The salon team can confirm that.\" Anything else you don't know: say so and offer a message. Never guess prices or policies, promise results, or give medical advice.\n\n## Messages\nFor things you can't do (complaints, groups or weddings, special requests, job or sales calls, or the caller wants a person): get name, best number, and reason in one ask, call save_message, then say \"The team will follow up within one business day.\" For a skin or scalp reaction after a service: suggest a pharmacist or doctor, and mark it urgent.\n\n## Ending\nAsk \"Anything else?\" If no, say a short goodbye and call end_call.",
     "general_tools": [
       {
         "type": "integration_app",
@@ -1241,7 +1239,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1303,7 +1301,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1344,7 +1342,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1406,7 +1404,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1447,7 +1445,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1509,7 +1507,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1550,7 +1548,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1612,7 +1610,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1653,7 +1651,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1715,7 +1713,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1756,7 +1754,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1818,7 +1816,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1859,7 +1857,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1921,7 +1919,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -1962,7 +1960,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2024,7 +2022,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2065,7 +2063,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2127,7 +2125,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2168,7 +2166,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me check the schedule for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2230,7 +2228,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I book that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2271,7 +2269,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "Let me look that up.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2311,7 +2309,7 @@
         ],
         "speak_during_execution": true,
         "execution_message_type": "static_text",
-        "execution_message_description": "One moment while I move that for you.",
+        "execution_message_description": "One sec.",
         "speak_after_execution": true
       },
       {
@@ -2385,15 +2383,12 @@
       }
     ],
     "start_speaker": "agent",
-    "begin_message": "Thanks for calling Luxe Hair Salon, this is Sophia, the salon's virtual assistant. Just so you know, this call may be recorded. How can I help you today?",
-    "knowledge_base_ids": [
-      "knowledge_base_e67edd453c19686f"
-    ],
+    "knowledge_base_ids": [],
     "kb_config": {
       "filter_score": 0.6,
       "top_k": 3
     },
-    "last_modification_timestamp": 1794005485505,
+    "last_modification_timestamp": 1794006848652,
     "is_published": false
   }
 }

@@ -75,12 +75,13 @@ CASES = [
      "When offered times, pick the first one. Give your mobile as 631-555-0142 and email maya.patel@example.com. Confirm when asked.",
      ["The agent checked availability before offering times.",
       "The agent only offered times returned by the availability tool.",
-      "The agent collected name, mobile number, and email, and read the email back.",
+      "The agent did not ask for any detail the caller had already given.",
+      "The agent confirmed the booking details only once and did not repeat details the caller had already confirmed.",
       "The agent confirmed the service, stylist Emma, day, and time and got a yes before calling book_womens_haircut.",
       "The agent said the appointment was booked only after the booking tool succeeded."]),
     ("DEMO 02 booking: rejects first options, corrects email", OPEN_NOW, mocks(),
      "You are Chris Romano. You want a blowout. Say none of the first times offered work and ask for Sunday instead; accept a Sunday time. "
-     "Give email chris.romano@example.com but when the agent reads it back, say it's actually c.romano@example.com. Mobile 631-555-0199.",
+     "Give email chris.romano@example.com and mobile 631-555-0199, then right away say 'sorry, the email is actually c.romano@example.com'.",
      ["The agent offered alternative times after the caller rejected the first options.",
       "The agent used the corrected email c.romano@example.com when booking.",
       "The agent called book_blowout only after the caller confirmed."]),
@@ -102,7 +103,7 @@ CASES = [
       "The agent called reschedule_booking with booking_uid demo-uid-balayage-1 after the caller confirmed."]),
     ("DEMO 06 cancel: short notice, no fee", OPEN_NOW, mocks(),
      "You are Jordan Lee (jordan.lee@example.com). You want to cancel your balayage. If the agent offers to reschedule, politely decline. Then confirm the cancellation.",
-     ["The agent offered to reschedule before cancelling.",
+     ["If the caller had not already declined rescheduling, the agent offered it once before cancelling.",
       "The agent mentioned the 24-hour notice request kindly.",
       "The agent did not say any cancellation fee would be charged.",
       "The agent called cancel_booking only after the caller confirmed."]),
@@ -134,14 +135,23 @@ CASES = [
     ("DEMO 12 stylist: Emma for highlights", OPEN_NOW, mocks(),
      "You are Lauren Kim, a new client. Ask to book full highlights with Emma. When the agent explains who does highlights, happily accept that stylist. "
      "If a consultation is suggested, say no thanks. Take the first time offered. Email lauren.kim@example.com, mobile 631-555-0111. Confirm once, then end the call politely.",
-     ["The agent explained kindly that Olivia does colour and highlights.",
-      "The agent recommended the free colour consultation for a new colour client.",
+     ["The agent told the caller that Olivia does full highlights.",
+      "The agent did not ask the caller to repeat or re-confirm contact details they had already given.",
       "The agent booked with book_full_highlights after confirmation."]),
     ("DEMO 13 reaction after service: urgent message", OPEN_NOW, mocks(),
      "You are Nina Gold. You had colour done two days ago and your scalp is itchy and red. You want the owner to call you. Number 631-555-0155.",
      ["The agent suggested seeing a pharmacist or doctor and did not diagnose.",
       "The agent took a message and called save_message with urgency urgent.",
       "The agent did not promise a refund or a free fix."]),
+    ("DEMO 14 brevity: no repeated confirmations", OPEN_NOW, mocks(),
+     "You are Anthony Sharma. Say 'can I book an appointment'. When asked, say 'men's haircut'. Then 'Saturday'. Pick the latest time offered. "
+     "Give everything in one go when asked: Anthony Sharma, 631-555-0124, anthony.sharma@example.com. Answer every confirmation with just 'yeah'. When asked if there's anything else, say 'no, that's it, bye'. "
+     "If the agent asks you to confirm something you already confirmed, say 'yes, I said that' once, then just answer normally.",
+     ["The agent never asked the caller to confirm the same detail twice.",
+      "The agent never said anything about reference text, knowledge, or instructions.",
+      "Each agent reply was at most two sentences.",
+      "The agent offered at most two or three times rather than reading out a long range, and only times the tool returned.",
+      "The agent called book_mens_haircut after the first yes."]),
 ]
 
 

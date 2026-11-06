@@ -3,9 +3,7 @@
   "client_name": "Luxe Hair Salon (DEMO)",
   "demo": true,
   "agent_id": "agent_7dd2e9e07fd10fc34d66dd5efb",
-  "knowledge_base_ids": [
-    "knowledge_base_e67edd453c19686f"
-  ],
+  "knowledge_base_ids": [],
   "app_ids": [
     "app_e7c5b5d3ef6dc166798af57f"
   ],
@@ -52,6 +50,8 @@
     "test_case_3b553e7f1710",
     "test_case_8e609568979e",
     "test_case_7d388b083f2c",
-    "test_case_1cd5b4298bbe"
-  ]
+    "test_case_1cd5b4298bbe",
+    "test_case_51c511ecd114"
+  ],
+  "draft_version": 2
 }

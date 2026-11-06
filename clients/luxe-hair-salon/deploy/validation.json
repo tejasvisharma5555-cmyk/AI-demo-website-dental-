@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-11-06T22:51:59Z",
+  "validated_at": "2026-11-06T23:16:38Z",
   "results": [
     {
       "check": "agent exists",
@@ -9,7 +9,7 @@
     {
       "check": "agent has a published version",
       "ok": true,
-      "detail": "published versions: [0]"
+      "detail": "published versions: [1, 0]"
     },
     {
       "check": "Retell LLM exists",
@@ -27,11 +27,6 @@
       "detail": "{\"model\": \"claude-5.5-haiku\", \"tier\": \"standard\"}"
     },
     {
-      "check": "knowledge base knowledge_base_e67edd453c19686f ready",
-      "ok": true,
-      "detail": "complete"
-    },
-    {
       "check": "integration app_e7c5b5d3ef6dc166798af57f authenticates",
       "ok": true,
       "detail": "success"
@@ -41,6 +36,11 @@
       "ok": true,
       "skipped": true,
       "detail": "Demo build: owner asked not to purchase a paid phone number."
+    },
+    {
+      "check": "simulation tests pass",
+      "ok": true,
+      "detail": "pass 14/14, fail 0, error 0 (batch test_batch_13812d78f1dd)"
     }
   ]
 }

@@ -1,0 +1,8 @@
+{
+  "request": {
+    "version": 2,
+    "version_title": "Shorter, no repeats v2",
+    "version_description": "No service list unless asked; silent before checks. Sims: 13/14 (test_batch_af0049e8578a, borderline wording on #07), re-run 14/14 (test_batch_13812d78f1dd)."
+  },
+  "response": {}
+}

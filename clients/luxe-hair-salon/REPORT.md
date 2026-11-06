@@ -8,12 +8,53 @@ Built 2026-11-06 with: research-voice-platform (change check) → research-busin
 build-receptionist (library skills: booking, cancel-reschedule, FAQ, lead capture,
 after-hours) → validate-receptionist.
 
+## Update 2026-11-06 — "too talkative" fix (owner feedback after first test call)
+**Problems seen in the owner's web call** (`call_bfbd0794f685ff19cf3d1988bf0`; latency p50 977 ms,
+LLM 602 ms):
+- Booking confirmed three times; email checked twice.
+- Spoke twice around every tool ("let me check…" plus "one moment…").
+- Said "thanks for the reference info": the knowledge base text was being read as caller speech.
+- Stopped mid-sentence on every "yeah".
+- Read out a whole day's openings.
+- Accepted an invalid email until Cal.com rejected it.
+
+**Changes, now live as published version 2:**
+- New "How you talk" rules:
+  - at most two short sentences per reply;
+  - never repeat or re-confirm what the caller already said or confirmed;
+  - "yeah" means yes;
+  - no narrating or thinking out loud;
+  - don't list services unless asked.
+- **Booking:** offers two times only, asks for name, mobile, and email in one question, checks
+  the email format, confirms once, then says only "You're all set. You'll get a confirmation
+  email. Anything else?"
+- **Tool lines:** every tool now says just "One sec."
+- **Knowledge base removed:** all facts were already in the prompt, so this fixes the
+  "reference info" replies and saves a retrieval step.
+- **Interruptions:** sensitivity 0.9 → 0.6, so a "yeah" doesn't stop her mid-sentence.
+- **Greeting:** shorter and generated, so it now says "We're closed right now, but I can still
+  book you in or take a message" when closed. Fixes the after-hours failures from run 1.
+- **Cancel:** respects "I don't want to reschedule"; adds the 24-hour note only when it applies.
+
+**Tested:**
+- 14 simulations (13 original + new #14 "no repeated confirmations"), all Cal.com tools mocked.
+- Version 1: 14/14. Version 2: 13/14, then **14/14 on re-run**. The one miss was wording on
+  "booking not found" ("left a message for the team to cancel"), which the grader read as
+  claiming a cancellation.
+- Structural checks 8/8. Results: `deploy/retell/simulation-run-2.json`, `simulation-run-3.json`.
+- **Not re-tested by voice yet:** try the orb again.
+
+**Note — your test booking is real:** Men's haircut with Emma, Sat Nov 7 at 5:30 PM, under
+"Anthony Sharma", email `anthony@gmail.com`. Cal.com sent a confirmation to that address, which
+may belong to a stranger. It's still on the calendar. Cancel it in Cal.com if you want the slot
+back, and use `@example.com` emails for tests.
+
 ## Built
 | What | Where | Status |
 |---|---|---|
-| Receptionist **"Sophia"**, warm upscale salon tone | Retell agent `agent_7dd2e9e07fd10fc34d66dd5efb` "Luxe Hair Salon DEMO - Sophia" | **Published** (version 0) |
+| Receptionist **"Sophia"**, warm upscale salon tone | Retell agent `agent_7dd2e9e07fd10fc34d66dd5efb` "Luxe Hair Salon DEMO - Sophia" | **Published** (version 2 — see update above) |
 | Prompt engine with 25 tools | Retell LLM `llm_80272405ae8a1a3b94f223e76843` | All 25 tools registered ✔ |
-| Knowledge base (services, prices, stylists, hours, policies — demo) | `knowledge_base_e67edd453c19686f` | Indexed ✔ |
+| Knowledge base (services, prices, stylists, hours, policies — demo) | `knowledge_base_e67edd453c19686f` | Detached in v1+ (facts are in the prompt) |
 | Cal.com connection (native, no custom code) | Retell app `app_e7c5b5d3ef6dc166798af57f` | Auth test passed ✔ |
 | Demo schedule (Tue–Fri 9–7, Sat 9–6, Sun 10–4, Mon closed, 6 holidays closed) | Cal.com schedule 2609729 "Luxe Hair Salon (DEMO)" — not the account default | Slots verified ✔ |
 | 10 demo services, one per specialist stylist | Cal.com event types 7810724–7810733 ("Luxe DEMO · … with Emma/Olivia/Sophia") | Slots verified ✔ |
@@ -83,7 +124,8 @@ published version includes the fixes, but **they are untested** until credits ar
   "the salon team can confirm", and Sophia offers to take a message.
 
 ## Couldn't do
-1. **Re-run the simulation and make voice test calls.** Retell credits ran out.
+1. ~~Re-run the simulation and make voice test calls~~ — **resolved**: credits were topped up;
+   simulations re-run (14/14) and the owner made a web call. The original blocker was:
 
    > **TL;DR: top up Retell so Sophia can take test calls**
    > 1. Open the Retell dashboard → **Billing**.

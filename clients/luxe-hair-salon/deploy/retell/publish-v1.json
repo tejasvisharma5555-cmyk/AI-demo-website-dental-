@@ -1,0 +1,8 @@
+{
+  "request": {
+    "version": 1,
+    "version_title": "Shorter, no repeats",
+    "version_description": "Brevity rules, single confirmation, no re-asking, dynamic greeting with closed notice, KB removed, interruption 0.6. 14/14 sims passed (batch test_batch_afb5bbfb88c7)."
+  },
+  "response": {}
+}
