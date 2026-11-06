@@ -1,0 +1,33 @@
+[
+  {
+    "stylist": "Emma",
+    "event_type_id": 7811029,
+    "slug": "luxe-demo-emma",
+    "services": {
+      "Women's haircut & styling": 60,
+      "Men's haircut": 30,
+      "Blowout": 45
+    }
+  },
+  {
+    "stylist": "Olivia",
+    "event_type_id": 7811033,
+    "slug": "luxe-demo-olivia",
+    "services": {
+      "Color consultation": 15,
+      "Root touch-up": 90,
+      "All-over color": 120,
+      "Partial highlights": 150,
+      "Full highlights": 180
+    }
+  },
+  {
+    "stylist": "Sophia",
+    "event_type_id": 7811034,
+    "slug": "luxe-demo-sophia",
+    "services": {
+      "Balayage": 180,
+      "Deep conditioning treatment": 30
+    }
+  }
+]
