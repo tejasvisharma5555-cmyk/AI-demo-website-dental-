@@ -8,6 +8,16 @@ Built 2026-11-06 with: research-voice-platform (change check) → research-busin
 build-receptionist (library skills: booking, cancel-reschedule, FAQ, lead capture,
 after-hours) → validate-receptionist.
 
+## Update 2026-11-06 — no re-confirming at the end (version 5)
+- **Owner:** in the text chat, Sophia kept asking for confirmation again at the end.
+- **Fix:**
+  - she confirms a booking, change, or cancellation exactly once;
+  - after any yes ("yeah", "ok", "sure") she acts immediately and never asks again, even if the
+    caller repeats the details;
+  - after booking she says only "You're all set. Anything else?";
+  - when the caller is done: "Thanks for calling, bye!" and she hangs up, with no summary.
+- **Not tested** (owner request).
+
 ## Update 2026-11-06 — greeting fix + fewer words (version 4)
 - **Problem:** the generated greeting spoke Sophia's reasoning out loud ("Friday at 6:33 PM: the
   salon closes at 7 PM today, so we're open right now.").

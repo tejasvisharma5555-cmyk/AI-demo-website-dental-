@@ -1,0 +1,8 @@
+{
+  "request": {
+    "version": 5,
+    "version_title": "No end-of-chat reconfirmation",
+    "version_description": "Confirm once; never re-confirm after yes; short goodbye + end_call. Not tested (owner request)."
+  },
+  "response": {}
+}
