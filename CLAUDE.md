@@ -59,14 +59,19 @@ clients/<slug>/
 ## Docs cache
 
 ```
-docs/platforms/<platform>.md          # how to build + deploy on a platform
+docs/platforms/<platform>/            # full platform research (see research-platform skill):
+                                      # capabilities, tools, integrations, phone numbers,
+                                      # testing, custom-function gaps, deprecations
 docs/business-types/<type>.md         # what callers ask, must-handle scenarios,
                                       # compliance/privacy notes, sample FAQs
 ```
 
 - Start every doc with `Last verified: YYYY-MM-DD` and the sources used.
-- Re-verify a doc if it is older than 90 days or the platform behaves
-  differently than documented; update it in place.
+- Platform docs are refreshed only when the platform's docs change (the
+  `research-platform` fingerprint check), or when the live API contradicts
+  them. Update in place.
+- Before every build, read `capabilities.md` and `deprecations.md` for the
+  platform. Use native features first; custom functions only for listed gaps.
 - Record gotchas and workarounds, not just the happy path.
 - Never put client data or secrets in `/docs`.
 
@@ -85,25 +90,26 @@ docs/business-types/<type>.md         # what callers ask, must-handle scenarios,
 
 ## Platforms and API keys
 
-Whenever the owner gives a platform and an API key, do all three, immediately:
+Whenever the owner gives a platform and an API key, do all of these, immediately:
 
 1. **Save the key to `.env`** as `<PLATFORM>_API_KEY=<key>` (e.g.
    `RETELL_API_KEY`). Add the variable name, with no value, to `.env.example`.
    `.env` is gitignored; confirm with `git check-ignore .env` before any commit.
 2. **Use the platform's REST API** for all build and deploy work. No
    dashboards, no SDK-only workflows. Load the key from `.env`, never hardcode it.
-3. **Test the key with one API call**: a read-only call (e.g. list voices).
-   Report whether it worked (status code + what came back), then record the
-   endpoint, auth header format, and result in `docs/platforms/<platform>.md`.
+3. **Test the key with one API call**: a read-only call (e.g. key info or
+   list voices). Report whether it worked (status code + what came back).
+4. **Run the `research-platform` skill** for that platform (it skips itself
+   if the cached docs are still current).
 
 If the network blocks the platform's host, request access to that host and
 retry; never fake or mock the test result.
 
 ### Known platforms
 
-| Platform | Use | Env var | API base |
-|---|---|---|---|
-| Retell | Voice | `RETELL_API_KEY` | `https://api.retellai.com` |
+| Platform | Use | Env var | API base | Docs cache |
+|---|---|---|---|---|
+| Retell | Voice | `RETELL_API_KEY` | `https://api.retellai.com` | `docs/platforms/retell/` |
 
 ## Secrets
 
@@ -113,8 +119,11 @@ Never commit API keys, passwords, or client credentials. Keys live only in
 
 ## Skills
 
-_Reserved. Skills for research, building, deploying, and testing will be
-added here. When a skill covers a step above, use it instead of the default
-approach._
+Skills live in `.claude/skills/<name>/SKILL.md`. When a skill covers a step,
+use it instead of the default approach.
+
+| Skill | When to run | Output |
+|---|---|---|
+| `research-platform` | Whenever a new platform is connected (platform + key given). Before a build, run its fingerprint check; re-run the research only if the platform's docs changed. | `docs/platforms/<platform>/` |
 
 <!-- Add skills below this line -->
