@@ -127,7 +127,10 @@ Every time, without asking:
 4. Fill in the owner's answers.
 5. Run **build-receptionist**: build with the library skills that apply, test, publish,
    attach a phone number, and deploy any custom functions to Vercel.
-6. Write `REPORT.md` and summarize Built / Assumed / Couldn't do (with TL;DR walkthroughs).
+6. Run **validate-receptionist** (after every build, and after any change to a live
+   receptionist). It checks the build and runs the simulation tests, opens the voice-orb
+   test page, and writes `REPORT.md` with Built / Assumed / Couldn't do (with TL;DR
+   walkthroughs) and three test-call scenarios.
 
 ---
 
@@ -188,6 +191,23 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Each entry: when to run it → 
     - `functions/` (custom function code);
     - `deploy/` (every request body and resource ID, Vercel info, phone number);
     - `REPORT.md`.
+
+- **validate-receptionist** (`.claude/skills/validate-receptionist/`)
+  - **Run:** after every build (the last step of build-receptionist) and after any change
+    to a live receptionist.
+  - **Does:**
+    - `scripts/check.py <slug> --simulate` confirms the agent exists and is published,
+      every function is registered, integrations authenticate, knowledge bases are ready,
+      the phone number routes to the agent, and custom functions reject unsigned
+      requests. Then it runs the full simulation test batch.
+    - `scripts/test-page/server.mjs <slug>` starts a local voice-orb page, so the owner can
+      talk to the agent in the browser through a Retell web call. The server adds the API
+      key itself, so the key never reaches the browser. The skill opens the page for the
+      owner.
+    - Writes three test-call scenarios for the business type (everyday call, tricky
+      edge case, handoff).
+  - **Produces:** `deploy/validation.json` and an updated `REPORT.md`
+    (Built / Assumed / Couldn't do / Try these three calls).
 
 ### Receptionist library
 Used by build-receptionist; one skill per job. Each skill gives:

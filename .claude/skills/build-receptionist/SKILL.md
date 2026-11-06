@@ -74,6 +74,10 @@ Only for functions that reached option 4.
 ## 4. Create and configure (Retell)
 Save every request body and its response ID under `clients/<slug>/deploy/retell/`, as files named
 for the resource: `knowledge-base.json`, `llm.json`, `agent.json`, `phone-number.json`, `tests.json`.
+Keep `deploy/retell/ids.json` up to date as you go. Its format is defined in the
+validate-receptionist skill: `client_name`, `agent_id`, `llm_id` or `conversation_flow_id`,
+`knowledge_base_ids`, `app_ids`, `phone_number`, `expected_tools`, `custom_function_urls`,
+`test_case_definition_ids`.
 1. **Knowledge base** — `POST /create-knowledge-base`, using `receptionist/knowledge-base.md`
    plus the client's website URLs.
 2. **Prompt engine** — `POST /create-retell-llm` with:
@@ -129,7 +133,16 @@ Rules for walkthroughs:
 - Keep building everything else that isn't blocked while you wait.
 - List every walkthrough in `REPORT.md` under **Couldn't do**.
 
-## 8. Save and report
+## 8. Validate
+Run the **validate-receptionist** skill. It:
+- re-checks everything against the live API;
+- runs the full simulation suite;
+- opens the voice-orb test page;
+- writes the report, with three test-call scenarios.
+
+Don't call the build done until it has run.
+
+## 9. Save and report
 - Everything goes in `clients/<slug>/` (never secrets):
   - `receptionist/` — final prompt, flow, functions, knowledge base, post-call;
   - `functions/` — custom function code;

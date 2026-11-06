@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__CLIENT_NAME__ Voice Test</title>
+<style>
+  :root {
+    --bg: #0d0f14; --fg: #eef1f6; --muted: #8b93a3;
+    --orb-a: #5b8cff; --orb-b: #9b6bff; --live: #3ddc97; --err: #ff6b6b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg: #f5f6f9; --fg: #14171f; --muted: #5b6372; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; padding: 16px;
+  }
+  main { text-align: center; max-width: 420px; width: 100%; }
+  h1 { font-size: 1.25rem; font-weight: 600; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: .9rem; margin: 0 0 40px; }
+  button.orb {
+    width: 200px; height: 200px; border-radius: 50%; border: 0; cursor: pointer;
+    background: radial-gradient(circle at 35% 30%, #ffffff55, transparent 45%),
+                linear-gradient(135deg, var(--orb-a), var(--orb-b));
+    box-shadow: 0 0 calc(30px + var(--lvl, 0) * 90px) calc(var(--lvl, 0) * 30px) #7a7cff88;
+    transform: scale(calc(1 + var(--lvl, 0) * .18));
+    transition: transform .08s linear, box-shadow .08s linear, filter .3s;
+    color: #fff; font: 600 1rem system-ui, sans-serif;
+  }
+  button.orb:focus-visible { outline: 3px solid var(--fg); outline-offset: 6px; }
+  button.orb.idle { animation: breathe 3.2s ease-in-out infinite; }
+  button.orb.connecting { filter: saturate(.4) brightness(.9); animation: breathe 1s ease-in-out infinite; }
+  @keyframes breathe { 50% { transform: scale(1.04); } }
+  .status { margin-top: 36px; min-height: 1.5em; font-size: .95rem; }
+  .status.live { color: var(--live); }
+  .status.error { color: var(--err); }
+  .controls { margin-top: 16px; display: flex; gap: 8px; justify-content: center; }
+  .controls button {
+    background: transparent; color: var(--fg); border: 1px solid var(--muted);
+    border-radius: 999px; padding: 6px 16px; font: inherit; font-size: .9rem; cursor: pointer;
+  }
+  .controls button[hidden] { display: none; }
+  .hint { color: var(--muted); font-size: .8rem; margin-top: 28px; }
+  code { font-size: .8rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>__CLIENT_NAME__</h1>
+  <p class="sub">AI receptionist · test line</p>
+  <button class="orb idle" id="orb" aria-label="Start call">Tap to talk</button>
+  <div class="status" id="status" role="status" aria-live="polite">Tap the orb and allow your microphone.</div>
+  <div class="controls">
+    <button id="mute" hidden>Mute</button>
+    <button id="end" hidden>End call</button>
+  </div>
+  <p class="hint">Agent <code>__AGENT_ID__</code> · calls appear in Retell call history</p>
+</main>
+<script type="module">
+  // Retell browser SDK, bundled locally (vendor/build-sdk.sh) so the page needs no CDN.
+  import { RetellClient } from "/vendor/retell-sdk.mjs";
+
+  // The SDK talks to this local server, which adds the real API key server-side.
+  const client = new RetellClient({ key: "local-test-page", baseURL: location.origin + "/retell" });
+  const orb = document.getElementById("orb");
+  const statusEl = document.getElementById("status");
+  const muteBtn = document.getElementById("mute");
+  const endBtn = document.getElementById("end");
+  let call = null, muted = false, level = 0, raf = 0, failed = false;
+
+  function setStatus(text, cls = "") { statusEl.textContent = text; statusEl.className = "status " + cls; }
+  function setOrb(state, label) { orb.className = "orb " + state; orb.textContent = label; }
+
+  function animate() {
+    level *= 0.88;
+    orb.style.setProperty("--lvl", level.toFixed(3));
+    raf = requestAnimationFrame(animate);
+  }
+
+  function reset() {
+    cancelAnimationFrame(raf); level = 0; orb.style.setProperty("--lvl", 0);
+    setOrb("idle", "Tap to talk"); orb.setAttribute("aria-label", "Start call");
+    muteBtn.hidden = endBtn.hidden = true; muted = false; muteBtn.textContent = "Mute";
+    call = null;
+  }
+
+  orb.addEventListener("click", async () => {
+    if (call) { await call.end(); return; }
+    failed = false;
+    setOrb("connecting", "Connecting…"); setStatus("Connecting…");
+    call = client.createWebCall({
+      agent_id: "__AGENT_ID__",
+      audio: { emitRawAudioSamples: true },
+      hooks: {
+        onStatus: (s) => {
+          if (s === "live") {
+            setOrb("live", "Tap to end"); orb.setAttribute("aria-label", "End call");
+            setStatus("Live — say hello", "live");
+            muteBtn.hidden = endBtn.hidden = false;
+            call.startAudioPlayback?.().catch(() => {});
+            animate();
+          }
+        },
+        onAudio: (samples) => {
+          let sum = 0;
+          for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+          level = Math.max(level, Math.min(1, Math.sqrt(sum / samples.length) * 6));
+        },
+        onEnd: () => { if (!failed) setStatus("Call ended. Tap to call again."); reset(); },
+        onError: (e) => { failed = true; setStatus("Couldn't connect: " + (e?.message || e), "error"); reset(); },
+      },
+    });
+  });
+
+  muteBtn.addEventListener("click", () => {
+    if (!call) return;
+    muted = !muted; muted ? call.mute() : call.unmute();
+    muteBtn.textContent = muted ? "Unmute" : "Mute";
+  });
+  endBtn.addEventListener("click", () => call?.end());
+</script>
+</body>
+</html>
