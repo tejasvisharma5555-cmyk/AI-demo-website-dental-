@@ -50,6 +50,13 @@ Don't claim something is live unless it was tested.
 ### Secrets
 Never commit API keys, tokens, or passwords. Reference them by name and note in the report where they need to be set.
 
+### When the owner gives a platform and a key
+Every time the owner names a platform and hands over its API key, do all three, without asking:
+
+1. **Save the key to `.env`** as `<PLATFORM>_API_KEY` (e.g. `RETELL_API_KEY`). Make sure `.gitignore` covers `.env`, and add the variable name (no value) to `.env.example`. Never echo the key into committed files, logs, or reports.
+2. **Use the platform's REST API.** All builds and deploys on that platform go through its REST API, called directly over HTTPS with the key from `.env` — not the dashboard, and not an SDK. Check the current endpoints in the platform's API docs first (platforms retire endpoints), and cache the base URL, auth header, and endpoints in `docs/platforms/<platform>.md`.
+3. **Test the key with one API call** — a read-only call (e.g. list agents) that changes nothing in the account. Report the HTTP status: 2xx means the key works; 401/403 means the key is bad; anything else means the call itself needs fixing, not the key.
+
 ## Skills
 
 _To be added._ Skills for repeatable parts of the build (research, prompt writing, platform deployment, reporting) will be listed here.
