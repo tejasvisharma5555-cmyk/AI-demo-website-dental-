@@ -49,7 +49,8 @@ clients/<client-slug>/
   brief.md          # what the owner told us + answers to the questions
   research.md       # business-type and platform research for this client
   receptionist/     # prompts, call flows, knowledge base, config
-  deploy/           # deployment config and steps actually taken
+  functions/        # custom function code (Vercel), only when no native option
+  deploy/           # every request body, resource ID, and deployment record
   REPORT.md         # final build report (see rule 6)
 ```
 
@@ -74,6 +75,21 @@ owner, using these sections:
   from the owner to finish it (in plain, non-technical terms).
 
 Never report something as working unless it was tested.
+
+### 8. When the owner has to do something, walk them through it (TL;DR)
+If anything the owner asked for can't be finished without them doing a step, such as a sign-in,
+payment, a signature, or forwarding their phone line, tell them in plain English, kept short:
+
+> **TL;DR: <what and why, one line>**
+> 1. <step, with the exact link or button>
+> 2. <step>
+> 3. Reply "done" (or paste <thing>).
+
+Rules:
+- No jargon, ~5 steps max.
+- Batch the walkthroughs into one message unless a step blocks progress.
+- Keep building everything else meanwhile.
+- List each walkthrough under **Couldn't do** in the report.
 
 ### 7. When the owner gives a platform and an API key
 Every time, without asking:
@@ -109,9 +125,9 @@ Every time, without asking:
    - writes `research.md` and drafts the call flow, prompt, and functions;
    - ends by asking the owner up to six business questions in one batch.
 4. Fill in the owner's answers.
-5. Build the receptionist; test it.
-6. Deploy.
-7. Write `REPORT.md` and summarize Built / Assumed / Couldn't do.
+5. Run **build-receptionist**: build with the library skills that apply, test, publish,
+   attach a phone number, and deploy any custom functions to Vercel.
+6. Write `REPORT.md` and summarize Built / Assumed / Couldn't do (with TL;DR walkthroughs).
 
 ---
 
@@ -153,3 +169,38 @@ Skills live in `.claude/skills/<name>/SKILL.md`. Each entry: when to run it → 
     - `clients/<slug>/research.md` and `brief.md` (with the questions);
     - `clients/<slug>/receptionist/` — `call-flow.md`, `prompt.md`, `functions.md`,
       `knowledge-base.md`, `post-call.md`.
+
+- **build-receptionist** (`.claude/skills/build-receptionist/`)
+  - **Run:** after the owner's answers are in.
+  - **Does:**
+    - Reads `/docs` and the client research first.
+    - For each function, uses the first option that works: a built-in tool, then a native
+      integration, then the platform's code tool. Only then does it write a custom function,
+      deployed to Vercel through Vercel's REST API.
+    - The first time a Vercel token is needed, asks the owner once and saves it to `.env` as
+      `VERCEL_TOKEN` (rule 7).
+    - Picks the newest fast model from the platform's live model list, using its fast tier and
+      a fast backup model. Checks latency on test calls and never defaults to an older model.
+    - Creates and configures the agent, tests it, publishes it, and attaches a phone number.
+    - Gives TL;DR walkthroughs for anything the owner must do (rule 8).
+  - **Produces:** everything in `clients/<slug>/`:
+    - `receptionist/`;
+    - `functions/` (custom function code);
+    - `deploy/` (every request body and resource ID, Vercel info, phone number);
+    - `REPORT.md`.
+
+### Receptionist library
+Used by build-receptionist; one skill per job. Each skill gives:
+- the owner facts it needs;
+- native vs. custom paths for each kind of client system;
+- the prompt section, tool config, and edge cases;
+- the simulation tests it must pass, and its post-call fields.
+
+| Skill | Use when |
+|---|---|
+| **receptionist-booking** | The client takes appointments — check availability, collect details, confirm, book |
+| **receptionist-cancel-reschedule** | The client takes appointments — find the booking, verify identity, apply the cancellation policy, move or cancel it |
+| **receptionist-faq** | Every client — answer from the knowledge base, never guess prices, insurance, or hours |
+| **receptionist-lead-capture** | Every client — take messages and new enquiries and deliver them to a CRM, text, or email. Also the fallback when booking or transfer can't be done |
+| **receptionist-transfer** | The client has staff to hand calls to — warm or cold transfer, rules, failed-transfer fallback |
+| **receptionist-after-hours** | Every client — open/closed logic, holidays, emergencies, on-call routing, after-hours booking |

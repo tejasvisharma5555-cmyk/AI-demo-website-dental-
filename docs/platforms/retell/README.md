@@ -32,7 +32,7 @@ Expected: HTTP 200 with `{"items": [...], "has_more": false}`.
 1. **Knowledge base** of the client's FAQ, services, hours, and policies → `POST /create-knowledge-base`.
 2. **Response engine**: a single-prompt Retell LLM → `POST /create-retell-llm`, with:
    - `general_prompt`, `begin_message`, `knowledge_base_ids`, and `model_config`
-     (`{"type":"cascading","primary":...}`);
+     (`{"type":"cascading","primary":{"model":...,"tier":"fast"},"backup":{...}}`);
    - `general_tools`: `end_call`, `transfer_call` (to staff and urgent lines), and
      `send_sms` (confirmations) if SMS is set up.
    - Booking: an `integration_app` tool if the client uses Cal.com, Calendly, or GoHighLevel;
@@ -56,7 +56,7 @@ Expected: HTTP 200 with `{"items": [...], "has_more": false}`.
 - **Multi-prompt agents**: creation ends 2026-12-15 and editing ends 2027-02-01 → use a
   single-prompt or conversation-flow agent.
 - **Model fields**: `model`, `s2s_model`, and `model_choice` are deprecated (2027-01-31) → use
-  `model_config.primary`.
+  `model_config.primary` (`{model, tier}`; tier replaces `model_high_priority`/`model_ultrafast`).
 - **Phone numbers**: the single-agent fields (`inbound_agent_id` etc.) are deprecated → use the
   weighted lists `inbound_agents` / `outbound_agents` (weights must sum to 1).
 - **Built-in Cal.com tools** were removed (2026-10-31) → use the Cal.com integration app.

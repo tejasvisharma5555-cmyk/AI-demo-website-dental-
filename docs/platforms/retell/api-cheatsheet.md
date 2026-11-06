@@ -10,7 +10,7 @@ The full spec is at https://docs.retellai.com/openapi.yaml — check it for ever
 |---|---|---|
 | Knowledge base | `POST /create-knowledge-base` (multipart) | `knowledge_base_name`, `knowledge_base_texts` / `_urls` / `_files` |
 | Add KB sources | `POST /add-knowledge-base-sources/{kb_id}` (multipart) | same as above |
-| Prompt engine | `POST /create-retell-llm` | `{"general_prompt":"...","begin_message":"...","model_config":{"type":"cascading","primary":"<model>"},"knowledge_base_ids":[...],"general_tools":[...]}` |
+| Prompt engine | `POST /create-retell-llm` | `{"general_prompt":"...","begin_message":"...","model_config":{"type":"cascading","primary":{"model":"<model>","tier":"fast"}},"knowledge_base_ids":[...],"general_tools":[...]}` |
 | Agent | `POST /create-agent` | `{"response_engine":{"type":"retell-llm","llm_id":"..."},"voice_id":"...","agent_name":"...","language":"en-US","timezone":"America/New_York"}` |
 | Update | `PATCH /update-retell-llm/{id}`, `PATCH /update-agent/{id}` | changed fields only |
 | Voices | `GET /list-voices`, `GET /get-voice/{id}` | — |
