@@ -1,102 +1,105 @@
-[
-  {
-    "key": "womens-haircut",
-    "service": "Women's haircut & styling",
-    "stylist": "Emma",
-    "price": "From $65",
-    "minutes": 60,
-    "event_type_id": 7810724,
-    "slug": "luxe-demo-womens-haircut-emma",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "mens-haircut",
-    "service": "Men's haircut",
-    "stylist": "Emma",
-    "price": "From $35",
-    "minutes": 30,
-    "event_type_id": 7810725,
-    "slug": "luxe-demo-mens-haircut-emma",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "blowout",
-    "service": "Blowout",
-    "stylist": "Emma",
-    "price": "From $45",
-    "minutes": 45,
-    "event_type_id": 7810726,
-    "slug": "luxe-demo-blowout-emma",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "root-touch-up",
-    "service": "Root touch-up",
-    "stylist": "Olivia",
-    "price": "From $85",
-    "minutes": 90,
-    "event_type_id": 7810727,
-    "slug": "luxe-demo-root-touch-up-olivia",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "all-over-color",
-    "service": "All-over color",
-    "stylist": "Olivia",
-    "price": "From $120",
-    "minutes": 120,
-    "event_type_id": 7810728,
-    "slug": "luxe-demo-all-over-color-olivia",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "partial-highlights",
-    "service": "Partial highlights",
-    "stylist": "Olivia",
-    "price": "From $150",
-    "minutes": 150,
-    "event_type_id": 7810729,
-    "slug": "luxe-demo-partial-highlights-olivia",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "full-highlights",
-    "service": "Full highlights",
-    "stylist": "Olivia",
-    "price": "From $200",
-    "minutes": 180,
-    "event_type_id": 7810730,
-    "slug": "luxe-demo-full-highlights-olivia",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "color-consultation",
-    "service": "Color consultation",
-    "stylist": "Olivia",
-    "price": "Free",
-    "minutes": 15,
-    "event_type_id": 7810731,
-    "slug": "luxe-demo-color-consultation-olivia",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "balayage",
-    "service": "Balayage",
-    "stylist": "Sophia",
-    "price": "From $225",
-    "minutes": 180,
-    "event_type_id": 7810732,
-    "slug": "luxe-demo-balayage-sophia",
-    "schedule_id": 2609729
-  },
-  {
-    "key": "deep-conditioning",
-    "service": "Deep conditioning treatment",
-    "stylist": "Sophia",
-    "price": "From $40",
-    "minutes": 30,
-    "event_type_id": 7810733,
-    "slug": "luxe-demo-deep-conditioning-sophia",
-    "schedule_id": 2609729
-  }
-]
+{
+  "status": "DELETED 2026-11-06 \u2014 replaced by event-types-per-stylist.json",
+  "old_event_types": [
+    {
+      "key": "womens-haircut",
+      "service": "Women's haircut & styling",
+      "stylist": "Emma",
+      "price": "From $65",
+      "minutes": 60,
+      "event_type_id": 7810724,
+      "slug": "luxe-demo-womens-haircut-emma",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "mens-haircut",
+      "service": "Men's haircut",
+      "stylist": "Emma",
+      "price": "From $35",
+      "minutes": 30,
+      "event_type_id": 7810725,
+      "slug": "luxe-demo-mens-haircut-emma",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "blowout",
+      "service": "Blowout",
+      "stylist": "Emma",
+      "price": "From $45",
+      "minutes": 45,
+      "event_type_id": 7810726,
+      "slug": "luxe-demo-blowout-emma",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "root-touch-up",
+      "service": "Root touch-up",
+      "stylist": "Olivia",
+      "price": "From $85",
+      "minutes": 90,
+      "event_type_id": 7810727,
+      "slug": "luxe-demo-root-touch-up-olivia",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "all-over-color",
+      "service": "All-over color",
+      "stylist": "Olivia",
+      "price": "From $120",
+      "minutes": 120,
+      "event_type_id": 7810728,
+      "slug": "luxe-demo-all-over-color-olivia",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "partial-highlights",
+      "service": "Partial highlights",
+      "stylist": "Olivia",
+      "price": "From $150",
+      "minutes": 150,
+      "event_type_id": 7810729,
+      "slug": "luxe-demo-partial-highlights-olivia",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "full-highlights",
+      "service": "Full highlights",
+      "stylist": "Olivia",
+      "price": "From $200",
+      "minutes": 180,
+      "event_type_id": 7810730,
+      "slug": "luxe-demo-full-highlights-olivia",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "color-consultation",
+      "service": "Color consultation",
+      "stylist": "Olivia",
+      "price": "Free",
+      "minutes": 15,
+      "event_type_id": 7810731,
+      "slug": "luxe-demo-color-consultation-olivia",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "balayage",
+      "service": "Balayage",
+      "stylist": "Sophia",
+      "price": "From $225",
+      "minutes": 180,
+      "event_type_id": 7810732,
+      "slug": "luxe-demo-balayage-sophia",
+      "schedule_id": 2609729
+    },
+    {
+      "key": "deep-conditioning",
+      "service": "Deep conditioning treatment",
+      "stylist": "Sophia",
+      "price": "From $40",
+      "minutes": 30,
+      "event_type_id": 7810733,
+      "slug": "luxe-demo-deep-conditioning-sophia",
+      "schedule_id": 2609729
+    }
+  ]
+}

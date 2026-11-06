@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-11-06T23:16:38Z",
+  "validated_at": "2026-11-06T23:31:31Z",
   "results": [
     {
       "check": "agent exists",
@@ -9,7 +9,7 @@
     {
       "check": "agent has a published version",
       "ok": true,
-      "detail": "published versions: [1, 0]"
+      "detail": "published versions: [2, 1, 0]"
     },
     {
       "check": "Retell LLM exists",
@@ -19,7 +19,7 @@
     {
       "check": "functions registered",
       "ok": true,
-      "detail": "registered: ['book_all_over_color', 'book_balayage', 'book_blowout', 'book_color_consultation', 'book_deep_conditioning', 'book_full_highlights', 'book_mens_haircut', 'book_partial_highlights', 'book_root_touch_up', 'book_womens_haircut', 'cancel_booking', 'check_all_over_color', 'check_balayage', 'check_blowout', 'check_color_consultation', 'check_deep_conditioning', 'check_full_highlights', 'check_mens_haircut', 'check_partial_highlights', 'check_root_touch_up', 'check_womens_haircut', 'end_call', 'find_booking', 'reschedule_booking', 'save_message']"
+      "detail": "registered: ['book_emma', 'book_olivia', 'book_sophia', 'cancel_booking', 'check_emma', 'check_olivia', 'check_sophia', 'end_call', 'find_booking', 'reschedule_booking', 'save_message']"
     },
     {
       "check": "model configured",
@@ -36,11 +36,6 @@
       "ok": true,
       "skipped": true,
       "detail": "Demo build: owner asked not to purchase a paid phone number."
-    },
-    {
-      "check": "simulation tests pass",
-      "ok": true,
-      "detail": "pass 14/14, fail 0, error 0 (batch test_batch_13812d78f1dd)"
     }
   ]
 }

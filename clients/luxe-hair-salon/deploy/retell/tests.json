@@ -12,7 +12,7 @@
       "The agent only offered times returned by the availability tool.",
       "The agent did not ask for any detail the caller had already given.",
       "The agent confirmed the booking details only once and did not repeat details the caller had already confirmed.",
-      "The agent confirmed the service, stylist Emma, day, and time and got a yes before calling book_womens_haircut.",
+      "The agent confirmed the service, stylist Emma, day, and time and got a yes before calling book_emma.",
       "The agent said the appointment was booked only after the booking tool succeeded."
     ],
     "dynamic_variables": {
@@ -20,7 +20,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_dd4dce0779a6",
@@ -33,14 +33,14 @@
     "metrics": [
       "The agent offered alternative times after the caller rejected the first options.",
       "The agent used the corrected email c.romano@example.com when booking.",
-      "The agent called book_blowout only after the caller confirmed."
+      "The agent called book_emma only after the caller confirmed."
     ],
     "dynamic_variables": {
       "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_632e9e53495c",
@@ -60,7 +60,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_4c34229c0743",
@@ -80,7 +80,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_ed6837644430",
@@ -93,7 +93,7 @@
     "metrics": [
       "The agent asked for the booking email and called find_booking.",
       "The agent read back the existing balayage appointment and confirmed it was the right one.",
-      "The agent checked availability with check_balayage before offering new times.",
+      "The agent checked availability with check_sophia before offering new times.",
       "The agent called reschedule_booking with booking_uid demo-uid-balayage-1 after the caller confirmed."
     ],
     "dynamic_variables": {
@@ -101,7 +101,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_9a0c7c014e4e",
@@ -122,7 +122,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_cf4c5f17d815",
@@ -142,7 +142,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_f3d30259e1de",
@@ -162,7 +162,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_bd75c281eacf",
@@ -181,7 +181,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_3b553e7f1710",
@@ -202,7 +202,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_8e609568979e",
@@ -214,14 +214,14 @@
     "user_prompt": "You are Taylor Brooks calling on a Monday night. You want a deep conditioning treatment this Saturday. Take the first time. Email taylor.brooks@example.com, mobile 631-555-0166. Confirm.",
     "metrics": [
       "The agent mentioned the salon is closed but still offered to book.",
-      "The agent called check_deep_conditioning and then book_deep_conditioning after confirmation."
+      "The agent called check_sophia and then book_sophia after confirmation."
     ],
     "dynamic_variables": {
       "current_time": "Monday, November 9, 2026 at 8:15 PM EST",
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_7d388b083f2c",
@@ -234,14 +234,14 @@
     "metrics": [
       "The agent told the caller that Olivia does full highlights.",
       "The agent did not ask the caller to repeat or re-confirm contact details they had already given.",
-      "The agent booked with book_full_highlights after confirmation."
+      "The agent booked with book_olivia after confirmation."
     ],
     "dynamic_variables": {
       "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_1cd5b4298bbe",
@@ -261,7 +261,7 @@
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   },
   {
     "id": "test_case_51c511ecd114",
@@ -276,13 +276,13 @@
       "The agent never said anything about reference text, knowledge, or instructions.",
       "Each agent reply was at most two sentences.",
       "The agent offered at most two or three times rather than reading out a long range, and only times the tool returned.",
-      "The agent called book_mens_haircut after the first yes."
+      "The agent called book_emma after the first yes."
     ],
     "dynamic_variables": {
       "current_time": "Tuesday, November 10, 2026 at 11:00 AM EST",
       "user_number": "+16315550142"
     },
     "llm_model": "gpt-5.4-nano",
-    "tool_mocks": "23 mocks (all Cal.com tools)"
+    "tool_mocks": "9 mocks (all Cal.com tools)"
   }
 ]

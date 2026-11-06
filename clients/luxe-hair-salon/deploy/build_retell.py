@@ -51,30 +51,36 @@ def desc(text):
 
 
 def tools():
-    events = json.load(open(os.path.join(HERE, "calcom", "event-types.json")))
+    # One Cal.com event type per stylist, with several lengths (deploy/calcom/event-types-per-stylist.json)
+    stylists = json.load(open(os.path.join(HERE, "calcom", "event-types-per-stylist.json")))
     out = []
-    for e in events:
-        key = e["key"].replace("-", "_").replace("womens_haircut", "womens_haircut")
-        key = {"color_consultation": "color_consultation", "deep_conditioning": "deep_conditioning"}.get(key, key)
-        label = f"{e['service']} with {e['stylist']}"
-        etid = str(e["event_type_id"])
+    for s in stylists:
+        key = s["stylist"].lower()
+        etid = str(s["event_type_id"])
+        menu = "; ".join(f"{name} = {mins}" for name, mins in s["services"].items())
+        lengths = sorted(set(s["services"].values()))
+        dur = {"type": "number", "enum": lengths,
+               "description": f"Length in minutes of the service the caller wants: {menu}. Use the same value when checking and booking."}
         out.append({
             "type": "integration_app", "name": f"check_{key}", "app_id": APP_ID, "provider": "calcom",
             "app_tool_template_name": "check_calcom_availability",
-            "description": f"Check open start times for {label} ({e['minutes']} min). Call before offering any time for this service.",
-            "parameters": [{"type": "object", "required": ["event_type_id", "start_time", "end_time", "timezone"],
-                            "properties": {
-                                "event_type_id": {"type": "string", "const": etid},
-                                "start_time": desc("Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."),
-                                "end_time": desc("End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."),
-                                "timezone": {"type": "string", "const": TZ}}}],
+            "description": f"Check {s['stylist']}'s open start times for one of her services ({', '.join(s['services'])}). Call before offering any time.",
+            "parameters": [
+                {"type": "object", "required": ["event_type_id", "start_time", "end_time", "timezone"],
+                 "properties": {
+                     "event_type_id": {"type": "string", "const": etid},
+                     "start_time": desc("Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."),
+                     "end_time": desc("End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."),
+                     "timezone": {"type": "string", "const": TZ}}},
+                {"type": "object", "required": [], "properties": {"duration_minutes": dur}},
+            ],
             "speak_during_execution": True, "execution_message_type": "static_text",
             "execution_message_description": "One sec.",
         })
         out.append({
             "type": "integration_app", "name": f"book_{key}", "app_id": APP_ID, "provider": "calcom",
             "app_tool_template_name": "book_calcom_appointment",
-            "description": f"Book {label} ({e['minutes']} min) at a time returned by check_{key}, only after the caller clearly confirmed the details.",
+            "description": f"Book a service with {s['stylist']} at a time returned by check_{key} (same duration), only after the caller said yes to the confirmation.",
             "parameters": [
                 {"type": "object", "required": ["event_type_id"],
                  "properties": {"event_type_id": {"type": "string", "const": etid}}},
@@ -82,10 +88,11 @@ def tools():
                  "properties": {
                      "time": desc("The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."),
                      "timezone": {"type": "string", "const": TZ},
+                     "duration_minutes": dur,
                      "name": desc("The client's first and last name."),
-                     "email": desc("The client's email address, as confirmed letter by letter."),
+                     "email": desc("The client's email address."),
                      "attendeePhoneNumber": desc("The client's mobile number in E.164 format, e.g. +16315550123."),
-                     "notes": desc("Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"),
+                     "notes": desc("Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."),
                  }},
             ],
             "speak_during_execution": True, "execution_message_type": "static_text",

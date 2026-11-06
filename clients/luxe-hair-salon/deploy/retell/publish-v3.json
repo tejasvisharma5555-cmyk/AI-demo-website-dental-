@@ -1,0 +1,8 @@
+{
+  "request": {
+    "version": 3,
+    "version_title": "3 stylist calendars",
+    "version_description": "Tools rewired to 3 per-stylist Cal.com event types with duration_minutes. Not simulation-tested (owner asked for no test calls)."
+  },
+  "response": {}
+}

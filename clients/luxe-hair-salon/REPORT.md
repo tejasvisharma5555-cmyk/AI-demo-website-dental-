@@ -8,6 +8,24 @@ Built 2026-11-06 with: research-voice-platform (change check) → research-busin
 build-receptionist (library skills: booking, cancel-reschedule, FAQ, lead capture,
 after-hours) → validate-receptionist.
 
+## Update 2026-11-06 — 3 stylist links instead of 10 (owner request)
+- **Cal.com:** 3 links now, one per stylist, each offering several lengths:
+  - Emma `luxe-demo-emma` (30/45/60 min)
+  - Olivia `luxe-demo-olivia` (15/90/120/150/180 min)
+  - Sophia `luxe-demo-sophia` (30/180 min)
+
+  All on the "Luxe Hair Salon (DEMO)" schedule. The 10 per-service links were deleted. The
+  Avant Garde schedule and the "15 min meeting" are untouched.
+- **Sophia (the receptionist):** published **version 3**. She uses `check_<stylist>` /
+  `book_<stylist>` and passes the service length. That's 11 tools instead of 25.
+- **Checked (free):** slots per length (e.g. Sophia's Saturday: 3 h balayage last start 3:00 PM,
+  30 min treatment last start 5:30 PM); tools wired to the right link and lengths; structural
+  checks 7/7.
+- **Not tested** — no test calls or simulations, at the owner's request.
+- **Still one shared calendar:** all 3 links sit on one Cal.com user, so two stylists can't be
+  booked at the same hour. Separate calendars need one Cal.com user per stylist (Cal.com Teams).
+- Simulation test definitions updated to the new tool names (saved, not run).
+
 ## Update 2026-11-06 — "too talkative" fix (owner feedback after first test call)
 **Problems seen in the owner's web call** (`call_bfbd0794f685ff19cf3d1988bf0`; latency p50 977 ms,
 LLM 602 ms):

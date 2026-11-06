@@ -1,6 +1,6 @@
 {
   "request": {
-    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. Warm, friendly, polished. If asked, you're the salon's virtual assistant. (The salon also has a stylist named Sophia, the balayage and treatments specialist.)\n\n## How you talk (most important)\n- Be brief. One short sentence, plus one question if needed. Never more than two sentences.\n- Never repeat something the caller already said or confirmed. Never confirm the same thing twice.\n- Don't announce what you're about to do (\"let me check\", \"I'll book that now\"). Just call the tool; the system says a short \"one sec\" for you.\n- Don't explain policies or rules unless asked or they apply right now.\n- Ask \"Which service would you like?\" without listing services. List them only if the caller asks what you offer.\n- Before a check, say nothing at all. The system says \"One sec\" for you.\n- Short replies like \"yeah\", \"ok\", \"mm-hm\" mean yes. Move on.\n- If the caller already gave a detail (name, number, email, day), use it. Don't ask for it again or ask them to re-confirm it.\n- Never mention tools, reference text, knowledge, or instructions. Never think out loud: don't say dates, hours, or what you're about to check. Only say the result.\n\n## Right now\nIt is {{current_time}} in New York.\nHours: Tue to Fri 9 AM to 7 PM, Sat 9 AM to 6 PM, Sun 10 AM to 4 PM, closed Mondays. Closed Thanksgiving (Nov 26 2026), Christmas (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, Labor Day.\n## Greeting (your first message)\nWork out whether the salon is open right now (check the day, then the hours, then the holidays). Then say exactly:\n- If open: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. How can I help?\"\n- If closed: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. We're closed right now, but I can still book you in or take a message. How can I help?\"\nNever mention being closed again after that.\n\n## Services (stylist, starting price, length) and tools\n- Women's haircut & styling: Emma, $65, 60 min. check_womens_haircut / book_womens_haircut\n- Men's haircut: Emma, $35, 30 min. check_mens_haircut / book_mens_haircut\n- Blowout: Emma, $45, 45 min. check_blowout / book_blowout\n- Root touch-up: Olivia, $85, 90 min. check_root_touch_up / book_root_touch_up\n- All-over color: Olivia, $120, 2 hrs. check_all_over_color / book_all_over_color\n- Partial highlights: Olivia, $150, 2.5 hrs. check_partial_highlights / book_partial_highlights\n- Full highlights: Olivia, $200, 3 hrs. check_full_highlights / book_full_highlights\n- Color consultation: Olivia, free, 15 min. check_color_consultation / book_color_consultation\n- Balayage: Sophia, $225, 3 hrs. check_balayage / book_balayage\n- Deep conditioning: Sophia, $40, 30 min. check_deep_conditioning / book_deep_conditioning\nPrices are \"starting at\". Each service is done by its listed stylist. If someone asks the wrong stylist, say who does it in one sentence.\n\n## Booking\n1. Get the service. If they named a day, check it. If they ask what's available or want the soonest, check the next 3 open days. Only ask \"What day works for you?\" if neither.\n2. Check availability. Offer two times, never a long list (\"Saturday at 10 or 2?\"). Only offer times the tool returned.\n3. Ask once for name, mobile, and email together: \"Can I get your name, mobile number, and email?\" If they're calling from a phone ({{user_number}} is a real number), ask \"Is this number best?\" instead of asking for the mobile.\n4. If the email doesn't look valid (needs exactly one @ and a domain like gmail.com), ask for it again once. Otherwise don't spell it back.\n5. One confirmation only, short: \"Men's haircut with Emma, Saturday 5:30, under Anthony Sharma, right?\" On yes, book immediately.\n6. After it books, say only: \"You're all set. You'll get a confirmation email. Anything else?\" Don't repeat the booking details.\n7. New clients wanting a big color change: suggest the free color consultation once, in one sentence.\n8. If nothing works or booking fails: offer another time or take a message, in one sentence.\n\n## Rescheduling and cancelling\n- Ask for the email they booked with, then find_booking. Confirm the appointment in a few words (\"Your balayage Wednesday at 10?\").\n- Reschedule: check that service's availability, offer two times, confirm once, reschedule.\n- Cancel: offer to reschedule once (\"Want to move it instead?\"), unless they already said they don't want to. Then cancel.\n- After cancelling, say \"Done, it's cancelled.\" If the appointment was less than 24 hours away, add: \"Just so you know, we ask for 24 hours' notice, but there's no fee.\" Then \"Anything else?\"\n- Not found: check the email spelling once, then offer a message.\n- Running late more than 15 minutes: they may need to reschedule; offer it.\n\n## Questions\nAnswer in one sentence from the facts above. No deposits needed. Patch tests, parking, exact address: \"The salon team can confirm that.\" Anything else you don't know: say so and offer a message. Never guess prices or policies, promise results, or give medical advice.\n\n## Messages\nFor things you can't do (complaints, groups or weddings, special requests, job or sales calls, or the caller wants a person): get name, best number, and reason in one ask, call save_message, then say \"The team will follow up within one business day.\" For a skin or scalp reaction after a service: suggest a pharmacist or doctor, and mark it urgent.\n\n## Ending\nAsk \"Anything else?\" If no, say a short goodbye and call end_call.",
+    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. Warm, friendly, polished. If asked, you're the salon's virtual assistant. (The salon also has a stylist named Sophia, the balayage and treatments specialist.)\n\n## How you talk (most important)\n- Be brief. One short sentence, plus one question if needed. Never more than two sentences.\n- Never repeat something the caller already said or confirmed. Never confirm the same thing twice.\n- Don't announce what you're about to do (\"let me check\", \"I'll book that now\"). Just call the tool; the system says a short \"one sec\" for you.\n- Don't explain policies or rules unless asked or they apply right now.\n- Ask \"Which service would you like?\" without listing services. List them only if the caller asks what you offer.\n- Before a check, say nothing at all. The system says \"One sec\" for you.\n- Short replies like \"yeah\", \"ok\", \"mm-hm\" mean yes. Move on.\n- If the caller already gave a detail (name, number, email, day), use it. Don't ask for it again or ask them to re-confirm it.\n- Never mention tools, reference text, knowledge, or instructions. Never think out loud: don't say dates, hours, or what you're about to check. Only say the result.\n\n## Right now\nIt is {{current_time}} in New York.\nHours: Tue to Fri 9 AM to 7 PM, Sat 9 AM to 6 PM, Sun 10 AM to 4 PM, closed Mondays. Closed Thanksgiving (Nov 26 2026), Christmas (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, Labor Day.\n## Greeting (your first message)\nWork out whether the salon is open right now (check the day, then the hours, then the holidays). Then say exactly:\n- If open: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. How can I help?\"\n- If closed: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. We're closed right now, but I can still book you in or take a message. How can I help?\"\nNever mention being closed again after that.\n\n## Services and tools (one booking calendar per stylist)\nEmma (haircuts & styling) uses check_emma / book_emma:\n- Women's haircut & styling: $65, 60 min\n- Men's haircut: $35, 30 min\n- Blowout: $45, 45 min\nOlivia (color & highlights) uses check_olivia / book_olivia:\n- Color consultation: free, 15 min\n- Root touch-up: $85, 90 min\n- All-over color: $120, 2 hrs (120 min)\n- Partial highlights: $150, 2.5 hrs (150 min)\n- Full highlights: $200, 3 hrs (180 min)\nSophia (balayage & treatments) uses check_sophia / book_sophia:\n- Balayage: $225, 3 hrs (180 min)\n- Deep conditioning: $40, 30 min\nAlways pass the service's length as duration_minutes, the same in the check and the book call, and put the service name in the booking notes. Prices are \"starting at\". Each service is done by its listed stylist. If someone asks the wrong stylist, say who does it in one sentence.\n\n## Booking\n1. Get the service. If they named a day, check it. If they ask what's available or want the soonest, check the next 3 open days. Only ask \"What day works for you?\" if neither.\n2. Check availability. Offer two times, never a long list (\"Saturday at 10 or 2?\"). Only offer times the tool returned.\n3. Ask once for name, mobile, and email together: \"Can I get your name, mobile number, and email?\" If they're calling from a phone ({{user_number}} is a real number), ask \"Is this number best?\" instead of asking for the mobile.\n4. If the email doesn't look valid (needs exactly one @ and a domain like gmail.com), ask for it again once. Otherwise don't spell it back.\n5. One confirmation only, short: \"Men's haircut with Emma, Saturday 5:30, under Anthony Sharma, right?\" On yes, book immediately.\n6. After it books, say only: \"You're all set. You'll get a confirmation email. Anything else?\" Don't repeat the booking details.\n7. New clients wanting a big color change: suggest the free color consultation once, in one sentence.\n8. If nothing works or booking fails: offer another time or take a message, in one sentence.\n\n## Rescheduling and cancelling\n- Ask for the email they booked with, then find_booking. Confirm the appointment in a few words (\"Your balayage Wednesday at 10?\").\n- Reschedule: check that service's availability, offer two times, confirm once, reschedule.\n- Cancel: offer to reschedule once (\"Want to move it instead?\"), unless they already said they don't want to. Then cancel.\n- After cancelling, say \"Done, it's cancelled.\" If the appointment was less than 24 hours away, add: \"Just so you know, we ask for 24 hours' notice, but there's no fee.\" Then \"Anything else?\"\n- Not found: check the email spelling once, then offer a message.\n- Running late more than 15 minutes: they may need to reschedule; offer it.\n\n## Questions\nAnswer in one sentence from the facts above. No deposits needed. Patch tests, parking, exact address: \"The salon team can confirm that.\" Anything else you don't know: say so and offer a message. Never guess prices or policies, promise results, or give medical advice.\n\n## Messages\nFor things you can't do (complaints, groups or weddings, special requests, job or sales calls, or the caller wants a person): get name, best number, and reason in one ask, call save_message, then say \"The team will follow up within one business day.\" For a skin or scalp reaction after a service: suggest a pharmacist or doctor, and mark it urgent.\n\n## Ending\nAsk \"Anything else?\" If no, say a short goodbye and call end_call.",
     "begin_message": null,
     "start_speaker": "agent",
     "model_config": {
@@ -19,11 +19,11 @@
     "general_tools": [
       {
         "type": "integration_app",
-        "name": "check_womens_haircut",
+        "name": "check_emma",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Women's haircut & styling with Emma (60 min). Call before offering any time for this service.",
+        "description": "Check Emma's open start times for one of her services (Women's haircut & styling, Men's haircut, Blowout). Call before offering any time.",
         "parameters": [
           {
             "type": "object",
@@ -36,7 +36,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810724"
+                "const": "7811029"
               },
               "start_time": {
                 "type": "string",
@@ -51,6 +51,21 @@
                 "const": "America/New_York"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  45,
+                  60
+                ],
+                "description": "Length in minutes of the service the caller wants: Women's haircut & styling = 60; Men's haircut = 30; Blowout = 45. Use the same value when checking and booking."
+              }
+            }
           }
         ],
         "speak_during_execution": true,
@@ -59,11 +74,11 @@
       },
       {
         "type": "integration_app",
-        "name": "book_womens_haircut",
+        "name": "book_emma",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Women's haircut & styling with Emma (60 min) at a time returned by check_womens_haircut, only after the caller clearly confirmed the details.",
+        "description": "Book a service with Emma at a time returned by check_emma (same duration), only after the caller said yes to the confirmation.",
         "parameters": [
           {
             "type": "object",
@@ -73,7 +88,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810724"
+                "const": "7811029"
               }
             }
           },
@@ -95,13 +110,22 @@
                 "type": "string",
                 "const": "America/New_York"
               },
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  45,
+                  60
+                ],
+                "description": "Length in minutes of the service the caller wants: Women's haircut & styling = 60; Men's haircut = 30; Blowout = 45. Use the same value when checking and booking."
+              },
               "name": {
                 "type": "string",
                 "description": "The client's first and last name."
               },
               "email": {
                 "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
+                "description": "The client's email address."
               },
               "attendeePhoneNumber": {
                 "type": "string",
@@ -109,7 +133,7 @@
               },
               "notes": {
                 "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
+                "description": "Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."
               }
             }
           }
@@ -120,11 +144,11 @@
       },
       {
         "type": "integration_app",
-        "name": "check_mens_haircut",
+        "name": "check_olivia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Men's haircut with Emma (30 min). Call before offering any time for this service.",
+        "description": "Check Olivia's open start times for one of her services (Color consultation, Root touch-up, All-over color, Partial highlights, Full highlights). Call before offering any time.",
         "parameters": [
           {
             "type": "object",
@@ -137,7 +161,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810725"
+                "const": "7811033"
               },
               "start_time": {
                 "type": "string",
@@ -152,6 +176,23 @@
                 "const": "America/New_York"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  15,
+                  90,
+                  120,
+                  150,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Color consultation = 15; Root touch-up = 90; All-over color = 120; Partial highlights = 150; Full highlights = 180. Use the same value when checking and booking."
+              }
+            }
           }
         ],
         "speak_during_execution": true,
@@ -160,11 +201,11 @@
       },
       {
         "type": "integration_app",
-        "name": "book_mens_haircut",
+        "name": "book_olivia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Men's haircut with Emma (30 min) at a time returned by check_mens_haircut, only after the caller clearly confirmed the details.",
+        "description": "Book a service with Olivia at a time returned by check_olivia (same duration), only after the caller said yes to the confirmation.",
         "parameters": [
           {
             "type": "object",
@@ -174,7 +215,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810725"
+                "const": "7811033"
               }
             }
           },
@@ -196,13 +237,24 @@
                 "type": "string",
                 "const": "America/New_York"
               },
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  15,
+                  90,
+                  120,
+                  150,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Color consultation = 15; Root touch-up = 90; All-over color = 120; Partial highlights = 150; Full highlights = 180. Use the same value when checking and booking."
+              },
               "name": {
                 "type": "string",
                 "description": "The client's first and last name."
               },
               "email": {
                 "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
+                "description": "The client's email address."
               },
               "attendeePhoneNumber": {
                 "type": "string",
@@ -210,7 +262,7 @@
               },
               "notes": {
                 "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
+                "description": "Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."
               }
             }
           }
@@ -221,11 +273,11 @@
       },
       {
         "type": "integration_app",
-        "name": "check_blowout",
+        "name": "check_sophia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Blowout with Emma (45 min). Call before offering any time for this service.",
+        "description": "Check Sophia's open start times for one of her services (Balayage, Deep conditioning treatment). Call before offering any time.",
         "parameters": [
           {
             "type": "object",
@@ -238,7 +290,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810726"
+                "const": "7811034"
               },
               "start_time": {
                 "type": "string",
@@ -253,6 +305,20 @@
                 "const": "America/New_York"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Balayage = 180; Deep conditioning treatment = 30. Use the same value when checking and booking."
+              }
+            }
           }
         ],
         "speak_during_execution": true,
@@ -261,11 +327,11 @@
       },
       {
         "type": "integration_app",
-        "name": "book_blowout",
+        "name": "book_sophia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Blowout with Emma (45 min) at a time returned by check_blowout, only after the caller clearly confirmed the details.",
+        "description": "Book a service with Sophia at a time returned by check_sophia (same duration), only after the caller said yes to the confirmation.",
         "parameters": [
           {
             "type": "object",
@@ -275,7 +341,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810726"
+                "const": "7811034"
               }
             }
           },
@@ -297,106 +363,13 @@
                 "type": "string",
                 "const": "America/New_York"
               },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_root_touch_up",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Root touch-up with Olivia (90 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810727"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_root_touch_up",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Root touch-up with Olivia (90 min) at a time returned by check_root_touch_up, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810727"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Balayage = 180; Deep conditioning treatment = 30. Use the same value when checking and booking."
               },
               "name": {
                 "type": "string",
@@ -404,7 +377,7 @@
               },
               "email": {
                 "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
+                "description": "The client's email address."
               },
               "attendeePhoneNumber": {
                 "type": "string",
@@ -412,613 +385,7 @@
               },
               "notes": {
                 "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_all_over_color",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for All-over color with Olivia (120 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810728"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_all_over_color",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book All-over color with Olivia (120 min) at a time returned by check_all_over_color, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810728"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_partial_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Partial highlights with Olivia (150 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810729"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_partial_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Partial highlights with Olivia (150 min) at a time returned by check_partial_highlights, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810729"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_full_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Full highlights with Olivia (180 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810730"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_full_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Full highlights with Olivia (180 min) at a time returned by check_full_highlights, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810730"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_color_consultation",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Color consultation with Olivia (15 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810731"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_color_consultation",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Color consultation with Olivia (15 min) at a time returned by check_color_consultation, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810731"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_balayage",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Balayage with Sophia (180 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810732"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_balayage",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Balayage with Sophia (180 min) at a time returned by check_balayage, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810732"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "check_deep_conditioning",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Deep conditioning treatment with Sophia (30 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810733"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec."
-      },
-      {
-        "type": "integration_app",
-        "name": "book_deep_conditioning",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Deep conditioning treatment with Sophia (30 min) at a time returned by check_deep_conditioning, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810733"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
+                "description": "Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."
               }
             }
           }
@@ -1176,7 +543,7 @@
   },
   "response": {
     "llm_id": "llm_80272405ae8a1a3b94f223e76843",
-    "version": 2,
+    "version": 3,
     "model_config": {
       "type": "cascading",
       "primary": {
@@ -1199,15 +566,15 @@
       "high_priority": false,
       "ultrafast": false
     },
-    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. Warm, friendly, polished. If asked, you're the salon's virtual assistant. (The salon also has a stylist named Sophia, the balayage and treatments specialist.)\n\n## How you talk (most important)\n- Be brief. One short sentence, plus one question if needed. Never more than two sentences.\n- Never repeat something the caller already said or confirmed. Never confirm the same thing twice.\n- Don't announce what you're about to do (\"let me check\", \"I'll book that now\"). Just call the tool; the system says a short \"one sec\" for you.\n- Don't explain policies or rules unless asked or they apply right now.\n- Ask \"Which service would you like?\" without listing services. List them only if the caller asks what you offer.\n- Before a check, say nothing at all. The system says \"One sec\" for you.\n- Short replies like \"yeah\", \"ok\", \"mm-hm\" mean yes. Move on.\n- If the caller already gave a detail (name, number, email, day), use it. Don't ask for it again or ask them to re-confirm it.\n- Never mention tools, reference text, knowledge, or instructions. Never think out loud: don't say dates, hours, or what you're about to check. Only say the result.\n\n## Right now\nIt is {{current_time}} in New York.\nHours: Tue to Fri 9 AM to 7 PM, Sat 9 AM to 6 PM, Sun 10 AM to 4 PM, closed Mondays. Closed Thanksgiving (Nov 26 2026), Christmas (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, Labor Day.\n## Greeting (your first message)\nWork out whether the salon is open right now (check the day, then the hours, then the holidays). Then say exactly:\n- If open: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. How can I help?\"\n- If closed: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. We're closed right now, but I can still book you in or take a message. How can I help?\"\nNever mention being closed again after that.\n\n## Services (stylist, starting price, length) and tools\n- Women's haircut & styling: Emma, $65, 60 min. check_womens_haircut / book_womens_haircut\n- Men's haircut: Emma, $35, 30 min. check_mens_haircut / book_mens_haircut\n- Blowout: Emma, $45, 45 min. check_blowout / book_blowout\n- Root touch-up: Olivia, $85, 90 min. check_root_touch_up / book_root_touch_up\n- All-over color: Olivia, $120, 2 hrs. check_all_over_color / book_all_over_color\n- Partial highlights: Olivia, $150, 2.5 hrs. check_partial_highlights / book_partial_highlights\n- Full highlights: Olivia, $200, 3 hrs. check_full_highlights / book_full_highlights\n- Color consultation: Olivia, free, 15 min. check_color_consultation / book_color_consultation\n- Balayage: Sophia, $225, 3 hrs. check_balayage / book_balayage\n- Deep conditioning: Sophia, $40, 30 min. check_deep_conditioning / book_deep_conditioning\nPrices are \"starting at\". Each service is done by its listed stylist. If someone asks the wrong stylist, say who does it in one sentence.\n\n## Booking\n1. Get the service. If they named a day, check it. If they ask what's available or want the soonest, check the next 3 open days. Only ask \"What day works for you?\" if neither.\n2. Check availability. Offer two times, never a long list (\"Saturday at 10 or 2?\"). Only offer times the tool returned.\n3. Ask once for name, mobile, and email together: \"Can I get your name, mobile number, and email?\" If they're calling from a phone ({{user_number}} is a real number), ask \"Is this number best?\" instead of asking for the mobile.\n4. If the email doesn't look valid (needs exactly one @ and a domain like gmail.com), ask for it again once. Otherwise don't spell it back.\n5. One confirmation only, short: \"Men's haircut with Emma, Saturday 5:30, under Anthony Sharma, right?\" On yes, book immediately.\n6. After it books, say only: \"You're all set. You'll get a confirmation email. Anything else?\" Don't repeat the booking details.\n7. New clients wanting a big color change: suggest the free color consultation once, in one sentence.\n8. If nothing works or booking fails: offer another time or take a message, in one sentence.\n\n## Rescheduling and cancelling\n- Ask for the email they booked with, then find_booking. Confirm the appointment in a few words (\"Your balayage Wednesday at 10?\").\n- Reschedule: check that service's availability, offer two times, confirm once, reschedule.\n- Cancel: offer to reschedule once (\"Want to move it instead?\"), unless they already said they don't want to. Then cancel.\n- After cancelling, say \"Done, it's cancelled.\" If the appointment was less than 24 hours away, add: \"Just so you know, we ask for 24 hours' notice, but there's no fee.\" Then \"Anything else?\"\n- Not found: check the email spelling once, then offer a message.\n- Running late more than 15 minutes: they may need to reschedule; offer it.\n\n## Questions\nAnswer in one sentence from the facts above. No deposits needed. Patch tests, parking, exact address: \"The salon team can confirm that.\" Anything else you don't know: say so and offer a message. Never guess prices or policies, promise results, or give medical advice.\n\n## Messages\nFor things you can't do (complaints, groups or weddings, special requests, job or sales calls, or the caller wants a person): get name, best number, and reason in one ask, call save_message, then say \"The team will follow up within one business day.\" For a skin or scalp reaction after a service: suggest a pharmacist or doctor, and mark it urgent.\n\n## Ending\nAsk \"Anything else?\" If no, say a short goodbye and call end_call.",
+    "general_prompt": "## Who you are\nYou are Sophia, the virtual receptionist for Luxe Hair Salon in Huntington, New York. Warm, friendly, polished. If asked, you're the salon's virtual assistant. (The salon also has a stylist named Sophia, the balayage and treatments specialist.)\n\n## How you talk (most important)\n- Be brief. One short sentence, plus one question if needed. Never more than two sentences.\n- Never repeat something the caller already said or confirmed. Never confirm the same thing twice.\n- Don't announce what you're about to do (\"let me check\", \"I'll book that now\"). Just call the tool; the system says a short \"one sec\" for you.\n- Don't explain policies or rules unless asked or they apply right now.\n- Ask \"Which service would you like?\" without listing services. List them only if the caller asks what you offer.\n- Before a check, say nothing at all. The system says \"One sec\" for you.\n- Short replies like \"yeah\", \"ok\", \"mm-hm\" mean yes. Move on.\n- If the caller already gave a detail (name, number, email, day), use it. Don't ask for it again or ask them to re-confirm it.\n- Never mention tools, reference text, knowledge, or instructions. Never think out loud: don't say dates, hours, or what you're about to check. Only say the result.\n\n## Right now\nIt is {{current_time}} in New York.\nHours: Tue to Fri 9 AM to 7 PM, Sat 9 AM to 6 PM, Sun 10 AM to 4 PM, closed Mondays. Closed Thanksgiving (Nov 26 2026), Christmas (Dec 25 2026), New Year's Day (Jan 1 2027), Memorial Day, Independence Day, Labor Day.\n## Greeting (your first message)\nWork out whether the salon is open right now (check the day, then the hours, then the holidays). Then say exactly:\n- If open: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. How can I help?\"\n- If closed: \"Hi, thanks for calling Luxe Hair Salon. I'm Sophia, the virtual assistant, and this call may be recorded. We're closed right now, but I can still book you in or take a message. How can I help?\"\nNever mention being closed again after that.\n\n## Services and tools (one booking calendar per stylist)\nEmma (haircuts & styling) uses check_emma / book_emma:\n- Women's haircut & styling: $65, 60 min\n- Men's haircut: $35, 30 min\n- Blowout: $45, 45 min\nOlivia (color & highlights) uses check_olivia / book_olivia:\n- Color consultation: free, 15 min\n- Root touch-up: $85, 90 min\n- All-over color: $120, 2 hrs (120 min)\n- Partial highlights: $150, 2.5 hrs (150 min)\n- Full highlights: $200, 3 hrs (180 min)\nSophia (balayage & treatments) uses check_sophia / book_sophia:\n- Balayage: $225, 3 hrs (180 min)\n- Deep conditioning: $40, 30 min\nAlways pass the service's length as duration_minutes, the same in the check and the book call, and put the service name in the booking notes. Prices are \"starting at\". Each service is done by its listed stylist. If someone asks the wrong stylist, say who does it in one sentence.\n\n## Booking\n1. Get the service. If they named a day, check it. If they ask what's available or want the soonest, check the next 3 open days. Only ask \"What day works for you?\" if neither.\n2. Check availability. Offer two times, never a long list (\"Saturday at 10 or 2?\"). Only offer times the tool returned.\n3. Ask once for name, mobile, and email together: \"Can I get your name, mobile number, and email?\" If they're calling from a phone ({{user_number}} is a real number), ask \"Is this number best?\" instead of asking for the mobile.\n4. If the email doesn't look valid (needs exactly one @ and a domain like gmail.com), ask for it again once. Otherwise don't spell it back.\n5. One confirmation only, short: \"Men's haircut with Emma, Saturday 5:30, under Anthony Sharma, right?\" On yes, book immediately.\n6. After it books, say only: \"You're all set. You'll get a confirmation email. Anything else?\" Don't repeat the booking details.\n7. New clients wanting a big color change: suggest the free color consultation once, in one sentence.\n8. If nothing works or booking fails: offer another time or take a message, in one sentence.\n\n## Rescheduling and cancelling\n- Ask for the email they booked with, then find_booking. Confirm the appointment in a few words (\"Your balayage Wednesday at 10?\").\n- Reschedule: check that service's availability, offer two times, confirm once, reschedule.\n- Cancel: offer to reschedule once (\"Want to move it instead?\"), unless they already said they don't want to. Then cancel.\n- After cancelling, say \"Done, it's cancelled.\" If the appointment was less than 24 hours away, add: \"Just so you know, we ask for 24 hours' notice, but there's no fee.\" Then \"Anything else?\"\n- Not found: check the email spelling once, then offer a message.\n- Running late more than 15 minutes: they may need to reschedule; offer it.\n\n## Questions\nAnswer in one sentence from the facts above. No deposits needed. Patch tests, parking, exact address: \"The salon team can confirm that.\" Anything else you don't know: say so and offer a message. Never guess prices or policies, promise results, or give medical advice.\n\n## Messages\nFor things you can't do (complaints, groups or weddings, special requests, job or sales calls, or the caller wants a person): get name, best number, and reason in one ask, call save_message, then say \"The team will follow up within one business day.\" For a skin or scalp reaction after a service: suggest a pharmacist or doctor, and mark it urgent.\n\n## Ending\nAsk \"Anything else?\" If no, say a short goodbye and call end_call.",
     "general_tools": [
       {
         "type": "integration_app",
-        "name": "check_womens_haircut",
+        "name": "check_emma",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Women's haircut & styling with Emma (60 min). Call before offering any time for this service.",
+        "description": "Check Emma's open start times for one of her services (Women's haircut & styling, Men's haircut, Blowout). Call before offering any time.",
         "parameters": [
           {
             "type": "object",
@@ -1220,7 +587,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810724"
+                "const": "7811029"
               },
               "start_time": {
                 "type": "string",
@@ -1235,6 +602,21 @@
                 "const": "America/New_York"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  45,
+                  60
+                ],
+                "description": "Length in minutes of the service the caller wants: Women's haircut & styling = 60; Men's haircut = 30; Blowout = 45. Use the same value when checking and booking."
+              }
+            }
           }
         ],
         "speak_during_execution": true,
@@ -1244,11 +626,11 @@
       },
       {
         "type": "integration_app",
-        "name": "book_womens_haircut",
+        "name": "book_emma",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Women's haircut & styling with Emma (60 min) at a time returned by check_womens_haircut, only after the caller clearly confirmed the details.",
+        "description": "Book a service with Emma at a time returned by check_emma (same duration), only after the caller said yes to the confirmation.",
         "parameters": [
           {
             "type": "object",
@@ -1258,7 +640,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810724"
+                "const": "7811029"
               }
             }
           },
@@ -1280,13 +662,22 @@
                 "type": "string",
                 "const": "America/New_York"
               },
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  45,
+                  60
+                ],
+                "description": "Length in minutes of the service the caller wants: Women's haircut & styling = 60; Men's haircut = 30; Blowout = 45. Use the same value when checking and booking."
+              },
               "name": {
                 "type": "string",
                 "description": "The client's first and last name."
               },
               "email": {
                 "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
+                "description": "The client's email address."
               },
               "attendeePhoneNumber": {
                 "type": "string",
@@ -1294,7 +685,7 @@
               },
               "notes": {
                 "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
+                "description": "Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."
               }
             }
           }
@@ -1306,11 +697,11 @@
       },
       {
         "type": "integration_app",
-        "name": "check_mens_haircut",
+        "name": "check_olivia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Men's haircut with Emma (30 min). Call before offering any time for this service.",
+        "description": "Check Olivia's open start times for one of her services (Color consultation, Root touch-up, All-over color, Partial highlights, Full highlights). Call before offering any time.",
         "parameters": [
           {
             "type": "object",
@@ -1323,7 +714,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810725"
+                "const": "7811033"
               },
               "start_time": {
                 "type": "string",
@@ -1338,6 +729,23 @@
                 "const": "America/New_York"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  15,
+                  90,
+                  120,
+                  150,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Color consultation = 15; Root touch-up = 90; All-over color = 120; Partial highlights = 150; Full highlights = 180. Use the same value when checking and booking."
+              }
+            }
           }
         ],
         "speak_during_execution": true,
@@ -1347,11 +755,11 @@
       },
       {
         "type": "integration_app",
-        "name": "book_mens_haircut",
+        "name": "book_olivia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Men's haircut with Emma (30 min) at a time returned by check_mens_haircut, only after the caller clearly confirmed the details.",
+        "description": "Book a service with Olivia at a time returned by check_olivia (same duration), only after the caller said yes to the confirmation.",
         "parameters": [
           {
             "type": "object",
@@ -1361,7 +769,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810725"
+                "const": "7811033"
               }
             }
           },
@@ -1383,13 +791,24 @@
                 "type": "string",
                 "const": "America/New_York"
               },
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  15,
+                  90,
+                  120,
+                  150,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Color consultation = 15; Root touch-up = 90; All-over color = 120; Partial highlights = 150; Full highlights = 180. Use the same value when checking and booking."
+              },
               "name": {
                 "type": "string",
                 "description": "The client's first and last name."
               },
               "email": {
                 "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
+                "description": "The client's email address."
               },
               "attendeePhoneNumber": {
                 "type": "string",
@@ -1397,7 +816,7 @@
               },
               "notes": {
                 "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
+                "description": "Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."
               }
             }
           }
@@ -1409,11 +828,11 @@
       },
       {
         "type": "integration_app",
-        "name": "check_blowout",
+        "name": "check_sophia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Blowout with Emma (45 min). Call before offering any time for this service.",
+        "description": "Check Sophia's open start times for one of her services (Balayage, Deep conditioning treatment). Call before offering any time.",
         "parameters": [
           {
             "type": "object",
@@ -1426,7 +845,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810726"
+                "const": "7811034"
               },
               "start_time": {
                 "type": "string",
@@ -1441,6 +860,20 @@
                 "const": "America/New_York"
               }
             }
+          },
+          {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Balayage = 180; Deep conditioning treatment = 30. Use the same value when checking and booking."
+              }
+            }
           }
         ],
         "speak_during_execution": true,
@@ -1450,11 +883,11 @@
       },
       {
         "type": "integration_app",
-        "name": "book_blowout",
+        "name": "book_sophia",
         "app_id": "app_e7c5b5d3ef6dc166798af57f",
         "provider": "calcom",
         "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Blowout with Emma (45 min) at a time returned by check_blowout, only after the caller clearly confirmed the details.",
+        "description": "Book a service with Sophia at a time returned by check_sophia (same duration), only after the caller said yes to the confirmation.",
         "parameters": [
           {
             "type": "object",
@@ -1464,7 +897,7 @@
             "properties": {
               "event_type_id": {
                 "type": "string",
-                "const": "7810726"
+                "const": "7811034"
               }
             }
           },
@@ -1486,108 +919,13 @@
                 "type": "string",
                 "const": "America/New_York"
               },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_root_touch_up",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Root touch-up with Olivia (90 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810727"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_root_touch_up",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Root touch-up with Olivia (90 min) at a time returned by check_root_touch_up, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810727"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
+              "duration_minutes": {
+                "type": "number",
+                "enum": [
+                  30,
+                  180
+                ],
+                "description": "Length in minutes of the service the caller wants: Balayage = 180; Deep conditioning treatment = 30. Use the same value when checking and booking."
               },
               "name": {
                 "type": "string",
@@ -1595,7 +933,7 @@
               },
               "email": {
                 "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
+                "description": "The client's email address."
               },
               "attendeePhoneNumber": {
                 "type": "string",
@@ -1603,625 +941,7 @@
               },
               "notes": {
                 "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_all_over_color",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for All-over color with Olivia (120 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810728"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_all_over_color",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book All-over color with Olivia (120 min) at a time returned by check_all_over_color, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810728"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_partial_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Partial highlights with Olivia (150 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810729"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_partial_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Partial highlights with Olivia (150 min) at a time returned by check_partial_highlights, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810729"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_full_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Full highlights with Olivia (180 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810730"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_full_highlights",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Full highlights with Olivia (180 min) at a time returned by check_full_highlights, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810730"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_color_consultation",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Color consultation with Olivia (15 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810731"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_color_consultation",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Color consultation with Olivia (15 min) at a time returned by check_color_consultation, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810731"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_balayage",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Balayage with Sophia (180 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810732"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_balayage",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Balayage with Sophia (180 min) at a time returned by check_balayage, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810732"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "check_deep_conditioning",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "check_calcom_availability",
-        "description": "Check open start times for Deep conditioning treatment with Sophia (30 min). Call before offering any time for this service.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id",
-              "start_time",
-              "end_time",
-              "timezone"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810733"
-              },
-              "start_time": {
-                "type": "string",
-                "description": "Start of the window to search, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. Use the caller's preferred day."
-              },
-              "end_time": {
-                "type": "string",
-                "description": "End of the window, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS. At most a few days after start_time."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              }
-            }
-          }
-        ],
-        "speak_during_execution": true,
-        "execution_message_type": "static_text",
-        "execution_message_description": "One sec.",
-        "speak_after_execution": true
-      },
-      {
-        "type": "integration_app",
-        "name": "book_deep_conditioning",
-        "app_id": "app_e7c5b5d3ef6dc166798af57f",
-        "provider": "calcom",
-        "app_tool_template_name": "book_calcom_appointment",
-        "description": "Book Deep conditioning treatment with Sophia (30 min) at a time returned by check_deep_conditioning, only after the caller clearly confirmed the details.",
-        "parameters": [
-          {
-            "type": "object",
-            "required": [
-              "event_type_id"
-            ],
-            "properties": {
-              "event_type_id": {
-                "type": "string",
-                "const": "7810733"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "time",
-              "timezone",
-              "name",
-              "email",
-              "attendeePhoneNumber"
-            ],
-            "properties": {
-              "time": {
-                "type": "string",
-                "description": "The confirmed start time, local New York time, ISO 8601 YYYY-MM-DDTHH:MM:SS, exactly as returned by the availability check."
-              },
-              "timezone": {
-                "type": "string",
-                "const": "America/New_York"
-              },
-              "name": {
-                "type": "string",
-                "description": "The client's first and last name."
-              },
-              "email": {
-                "type": "string",
-                "description": "The client's email address, as confirmed letter by letter."
-              },
-              "attendeePhoneNumber": {
-                "type": "string",
-                "description": "The client's mobile number in E.164 format, e.g. +16315550123."
-              },
-              "notes": {
-                "type": "string",
-                "description": "Short notes: new or returning client, stylist requested, anything the stylist should know. Start with 'DEMO booking via AI receptionist.'"
+                "description": "Start with 'DEMO booking via AI receptionist.' then the service name (e.g. 'Service: Balayage'), new or returning, and anything the stylist should know."
               }
             }
           }
@@ -2388,7 +1108,7 @@
       "filter_score": 0.6,
       "top_k": 3
     },
-    "last_modification_timestamp": 1794006848652,
+    "last_modification_timestamp": 1794007883044,
     "is_published": false
   }
 }
