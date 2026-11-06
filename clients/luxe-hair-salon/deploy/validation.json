@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-11-06T23:31:31Z",
+  "validated_at": "2026-11-06T23:35:29Z",
   "results": [
     {
       "check": "agent exists",
@@ -9,7 +9,7 @@
     {
       "check": "agent has a published version",
       "ok": true,
-      "detail": "published versions: [2, 1, 0]"
+      "detail": "published versions: [4, 3, 2, 1, 0]"
     },
     {
       "check": "Retell LLM exists",

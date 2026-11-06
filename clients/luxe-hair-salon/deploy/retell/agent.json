@@ -102,13 +102,13 @@
   "response": {
     "agent_id": "agent_7dd2e9e07fd10fc34d66dd5efb",
     "channel": "voice",
-    "last_modification_timestamp": 1794007883474,
+    "last_modification_timestamp": 1794008114923,
     "agent_name": "Luxe Hair Salon DEMO - Sophia",
     "version_description": "Luxe Hair Salon fictional demo receptionist",
     "response_engine": {
       "llm_id": "llm_80272405ae8a1a3b94f223e76843",
       "type": "retell-llm",
-      "version": 3
+      "version": 4
     },
     "language": "en-US",
     "data_storage_setting": "everything",
@@ -119,8 +119,8 @@
     },
     "opt_in_signed_url": false,
     "end_call_after_silence_ms": 30000,
-    "version": 3,
-    "base_version": 2,
+    "version": 4,
+    "base_version": 3,
     "assigned_tags": [],
     "is_published": false,
     "version_title": "DEMO build",

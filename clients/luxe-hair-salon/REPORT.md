@@ -8,6 +8,17 @@ Built 2026-11-06 with: research-voice-platform (change check) → research-busin
 build-receptionist (library skills: booking, cancel-reschedule, FAQ, lead capture,
 after-hours) → validate-receptionist.
 
+## Update 2026-11-06 — greeting fix + fewer words (version 4)
+- **Problem:** the generated greeting spoke Sophia's reasoning out loud ("Friday at 6:33 PM: the
+  salon closes at 7 PM today, so we're open right now.").
+- **Fix:** fixed greeting "Hi, Luxe Hair Salon, this is Sophia, the virtual assistant. This call
+  may be recorded. How can I help?"
+- **Closed notice:** she now mentions the salon is closed only if the caller asks for a person,
+  asks if it's open, or wants a same-day appointment while closed.
+- **Shorter prompt:** one sentence per reply. She never says the time, day, hours, or what she's
+  checking unless asked. After booking she says only "You're all set. Anything else?"
+- **Not tested** (owner request). Free structural checks pass.
+
 ## Update 2026-11-06 — 3 stylist links instead of 10 (owner request)
 - **Cal.com:** 3 links now, one per stylist, each offering several lengths:
   - Emma `luxe-demo-emma` (30/45/60 min)

@@ -1,0 +1,8 @@
+{
+  "request": {
+    "version": 4,
+    "version_title": "Fixed greeting, fewer words",
+    "version_description": "Static greeting (generated one leaked reasoning); one-sentence replies; never says time/day. Not tested (owner request)."
+  },
+  "response": {}
+}

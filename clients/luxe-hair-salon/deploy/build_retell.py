@@ -151,7 +151,7 @@ def main():
     tl = tools()
     llm_body = {
         "general_prompt": prompt,
-        "begin_message": None,  # unset = LLM generates the greeting (see prompt "Greeting"), so it can say when closed
+        "begin_message": "Hi, Luxe Hair Salon, this is Sophia, the virtual assistant. This call may be recorded. How can I help?",  # fixed text: a generated greeting leaked the agent's reasoning
         "start_speaker": "agent",
         "model_config": {"type": "cascading",
                          "primary": {"model": "claude-5.5-haiku", "tier": "standard"},
