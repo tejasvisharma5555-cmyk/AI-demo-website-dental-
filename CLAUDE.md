@@ -75,6 +75,27 @@ owner, using these sections:
 
 Never report something as working unless it was tested.
 
+### 7. When the owner gives a platform and an API key
+Every time, without asking:
+1. **Save the key to `.env`** (repo root) as `<PLATFORM>_API_KEY=...`
+   (e.g. `RETELL_API_KEY`). `.env` is gitignored — never commit it, never copy the
+   key into any other file, and never echo it in output. Add the variable name
+   (empty value) to `.env.example`.
+2. **Use the platform's REST API** for all work on that platform — not SDKs,
+   dashboards, or CLIs. Load the key from `.env` at call time.
+3. **Test the key with one API call** — a harmless read-only request (e.g. list
+   agents). Report the HTTP status and what it showed. If it fails, say why and
+   don't build on that platform until it works.
+4. Record the base URL, auth format, and the test endpoint in
+   `docs/platforms/<platform>.md`.
+
+---
+
+## Platforms
+
+- **Voice: Retell** — default voice platform for all receptionists.
+  Key: `RETELL_API_KEY` in `.env`. Notes: `docs/platforms/retell.md`.
+
 ---
 
 ## Workflow
