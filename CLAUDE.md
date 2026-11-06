@@ -76,6 +76,23 @@ owner, using these sections:
 
 Never report something as working unless it was tested.
 
+### 9. Don't waste the owner's credits
+Simulations, web calls, and phone calls cost the owner money (Retell bills per message and per
+minute). Free checks (structural checks, reading configs, slot lookups, transcripts of past
+runs) need no permission.
+- **One full simulation suite per build.** Run it once at the end, before publishing.
+- **After a fix, re-run only the affected tests** (`check.py <slug> --simulate --cases "DEMO 06,DEMO 12"`),
+  never the whole suite.
+- **Fix test wording without re-running.** If a failure is the test's own fault (a looping
+  simulated caller or a badly worded check), fix the test and don't spend credits proving it.
+- **Never re-run just to confirm a pass,** or because one run was flaky. Report it instead.
+- **Ask first,** with an estimated count of test conversations, before spending more than
+  **one full suite plus one targeted re-run** on a single change, and before any web or phone
+  call I place myself.
+- **Use the cheapest model for the simulated caller** (the test's `llm_model`). It doesn't need
+  to be smart.
+- **Report what was spent:** how many test conversations each change used.
+
 ### 8. When the owner has to do something, walk them through it (TL;DR)
 If anything the owner asked for can't be finished without them doing a step, such as a sign-in,
 payment, a signature, or forwarding their phone line, tell them in plain English, kept short:

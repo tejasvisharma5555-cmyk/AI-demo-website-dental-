@@ -165,7 +165,8 @@ def main():
     saved, out_ids = [], []
     for name, dv, mk, prompt, metrics in CASES:
         body = {"name": name, "response_engine": engine, "user_prompt": prompt, "metrics": metrics,
-                "dynamic_variables": dv, "tool_mocks": mk}
+                "dynamic_variables": dv, "tool_mocks": mk,
+                "llm_model": "gpt-5.4-nano"}  # cheapest-class model for the simulated caller (CLAUDE.md rule 9)
         if name in by_name:
             tid = by_name[name]["test_case_definition_id"]
             st, r = api("PUT", f"/update-test-case-definition/{tid}", body)

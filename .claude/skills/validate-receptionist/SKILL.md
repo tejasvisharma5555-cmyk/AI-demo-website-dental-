@@ -33,6 +33,15 @@ under Couldn't do with a top-up walkthrough. Keep the last completed batch's res
 If `ids.json` is missing or incomplete, rebuild it from the files in `deploy/retell/` and from
 `GET` calls to the API before validating.
 
+## Credits first (CLAUDE.md rule 9)
+- Structural checks are free.
+- `--simulate` and web/phone calls spend the owner's Retell credits:
+  - run the full suite **once** per build;
+  - after a fix, use `--simulate --cases "DEMO 06,DEMO 12"` for only the affected tests;
+  - never re-run to confirm a pass;
+  - ask before spending more.
+- Report how many test conversations were used.
+
 ## 1. Structural checks
 ```bash
 python3 -I .claude/skills/validate-receptionist/scripts/check.py <slug> --simulate

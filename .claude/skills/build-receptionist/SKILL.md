@@ -99,7 +99,12 @@ validate-receptionist skill: `client_name`, `agent_id`, `llm_id` or `conversatio
   library skill used. Each library skill lists its required cases. Use `tool_mocks` so tests
   never write real bookings.
   Calls: `POST /create-test-case-definition` → `POST /create-batch-test` → `GET /get-batch-test`.
-- Fix and re-run until they all pass. Save the results to `deploy/retell/tests.json`.
+- **Credits (CLAUDE.md rule 9):**
+  - Set the simulated caller's `llm_model` to the cheapest small model.
+  - Run the full suite **once**. After fixes, re-run only the affected cases with `--cases`.
+  - Fix test-wording failures without re-running.
+  - Ask the owner before going beyond one full suite plus one targeted re-run.
+- Save the results to `deploy/retell/tests.json`.
 - One **web call** (`POST /v3/create-web-call`) to check voice and latency. If a browser can't be
   driven, note that and rely on the phone test.
 

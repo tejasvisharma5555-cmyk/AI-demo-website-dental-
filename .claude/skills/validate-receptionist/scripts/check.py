@@ -2,7 +2,10 @@
 """Validate a client's Retell receptionist after a build.
 
 Usage:
-  check.py <client-slug> [--simulate] [--timeout 600]
+  check.py <client-slug> [--simulate [--cases "DEMO 06,DEMO 12"]] [--timeout 600]
+
+COST: --simulate spends the owner's Retell credits (CLAUDE.md rule 9). Run the full suite once per
+build; after a fix, pass --cases with only the affected test names (substring match) or IDs.
 
 Reads IDs from clients/<slug>/deploy/retell/ids.json and RETELL_API_KEY from .env, then checks:
   - the agent exists and is published
@@ -71,6 +74,7 @@ def main():
     slug = args[0]
     simulate = "--simulate" in args
     timeout = int(args[args.index("--timeout") + 1]) if "--timeout" in args else 600
+    only = [c.strip() for c in args[args.index("--cases") + 1].split(",")] if "--cases" in args else None
 
     root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip()
     ids_path = os.path.join(root, "clients", slug, "deploy", "retell", "ids.json")
@@ -170,6 +174,13 @@ def main():
     # Simulation
     if simulate:
         tcs = ids.get("test_case_definition_ids", [])
+        if only and tcs:
+            st_l, lst = rt.call("GET", "/v2/list-test-case-definitions?type=" + ("retell-llm" if ids.get("llm_id") else "conversation-flow")
+                                + ("&llm_id=" + ids["llm_id"] if ids.get("llm_id") else ""))
+            names = {t.get("test_case_definition_id"): t.get("name", "") for t in
+                     (lst if isinstance(lst, list) else lst.get("items", []))} if st_l == 200 else {}
+            tcs = [t for t in tcs if t in only or any(o.lower() in names.get(t, "").lower() for o in only)]
+            print(f"Running only {len(tcs)} selected test(s): {[names.get(t, t) for t in tcs]}")
         engine = ({"type": "retell-llm", "llm_id": ids["llm_id"]} if ids.get("llm_id")
                   else {"type": "conversation-flow", "conversation_flow_id": ids.get("conversation_flow_id")})
         if not tcs:
