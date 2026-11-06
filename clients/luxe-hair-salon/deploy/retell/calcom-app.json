@@ -1,0 +1,26 @@
+{
+  "request": {
+    "type": "calendar",
+    "provider": "calcom",
+    "name": "Luxe Hair Salon - Cal.com",
+    "tenant_url": "cal.com",
+    "auth_config": {
+      "type": "api_key",
+      "api_key": "<CALCOM_API_KEY from .env>"
+    }
+  },
+  "response": {
+    "app_id": "app_e7c5b5d3ef6dc166798af57f",
+    "org_id": "org_XWS3AxPPA4o74luU",
+    "type": "calendar",
+    "provider": "calcom",
+    "name": "Luxe Hair Salon - Cal.com",
+    "tenant_url": "cal.com",
+    "connection_status": "not_connected",
+    "auth_config": {
+      "type": "api_key"
+    },
+    "created_timestamp": 1794004693522,
+    "user_modified_timestamp": 1794004693522
+  }
+}

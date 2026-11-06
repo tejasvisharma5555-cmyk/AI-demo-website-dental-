@@ -60,6 +60,10 @@ Expected: HTTP 200 with `{"items": [...], "has_more": false}`.
 - **Phone numbers**: the single-agent fields (`inbound_agent_id` etc.) are deprecated → use the
   weighted lists `inbound_agents` / `outbound_agents` (weights must sum to 1).
 - **Built-in Cal.com tools** were removed (2026-10-31) → use the Cal.com integration app.
+- **Cal.com app by API key** needs `"tenant_url": "cal.com"` (or `"cal.eu"`). Without it,
+  `POST /create-app` returns 400 "Domain must be cal.com or cal.eu". Verified 2026-11-06. A new
+  app shows `connection_status: not_connected` until first use; `POST /test-app-auth/{id}`
+  returns `{"success": true}` when the key works.
 - **Conversation nodes** no longer take tools → use a subagent node.
 - **Agent versions**: use `GET /list-agent-versions/{id}` and `POST /publish-agent-version/{id}`.
 - **Update Call** only works on ended calls; for live changes use `PATCH /v2/update-live-call`.
