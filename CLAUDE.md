@@ -87,21 +87,23 @@ Every time, without asking:
    agents). Report the HTTP status and what it showed. If it fails, say why and
    don't build on that platform until it works.
 4. Record the base URL, auth format, and the test endpoint in
-   `docs/platforms/<platform>.md`.
+   `docs/platforms/<platform>/README.md`.
+5. Run the **research-voice-platform** skill on the new platform.
 
 ---
 
 ## Platforms
 
 - **Voice: Retell** — default voice platform for all receptionists.
-  Key: `RETELL_API_KEY` in `.env`. Notes: `docs/platforms/retell.md`.
+  Key: `RETELL_API_KEY` in `.env`. Notes: `docs/platforms/retell/` (start with `README.md`).
 
 ---
 
 ## Workflow
 
 1. Owner describes the client.
-2. Check `/docs`; research platform + business type; update `/docs`.
+2. Run the research-voice-platform change check (step 1 only); research the business
+   type; update `/docs`.
 3. Create `clients/<client-slug>/` from the template; write `brief.md` and `research.md`.
 4. Ask the owner up to six business questions (one batch).
 5. Build the receptionist; test it.
@@ -118,10 +120,17 @@ Reference secrets by name in config; keep values out of the repo.
 
 ## Skills
 
-_Reserved — skills will be added here next._
+Skills live in `.claude/skills/<name>/SKILL.md`. Each entry: when to run it → what it produces.
 
-<!--
-List each skill with: name, when to use it, and what it produces.
-Example:
-- `research-platform` — use when a platform isn't in /docs; writes docs/platforms/<name>.md
--->
+- **research-voice-platform** (`.claude/skills/research-voice-platform/`)
+  - **Run:** whenever a new platform is connected (after rule 7's key test passes), and
+    as a change check before each client build.
+  - **Re-run in full only if the docs changed:** `scripts/docs-diff.py` compares per-page
+    hashes of the platform's docs and lists the pages that were added, changed, or removed.
+    If nothing changed, use `/docs` as is.
+  - **Does:** reads the platform's full docs (Retell: `docs.retellai.com/llms.txt`, plus
+    `llms-full.txt` and the OpenAPI spec). Maps what the platform does natively and how to
+    set up each thing through the API (integrations, tools, phone numbers, testing). Flags
+    where a custom function is needed.
+  - **Produces:** `docs/platforms/<platform>/` — `README.md`, `capabilities.md`,
+    `api-cheatsheet.md`, `custom-functions.md`, `SOURCE.md`, `page-hashes.tsv`.
