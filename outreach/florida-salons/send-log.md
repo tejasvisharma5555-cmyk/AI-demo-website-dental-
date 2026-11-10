@@ -13,5 +13,8 @@ Luxe + Mane Salon · The Bohèm · Taylor James Salon (18)
 
 **Total: 24 sent.** Anyone who replies "stop" must not be emailed again — record opt-outs here.
 
+## Bounces
+- Salon South Beach — info@salonsouthbeach.com (no such address). Reach by phone: 727-444-4551.
+
 ## Opt-outs
 _None yet._
