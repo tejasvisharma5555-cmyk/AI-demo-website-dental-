@@ -8,6 +8,23 @@ Built 2026-11-06 with: research-voice-platform (change check) → research-busin
 build-receptionist (library skills: booking, cancel-reschedule, FAQ, lead capture,
 after-hours) → validate-receptionist.
 
+## Update 2026-11-12 — version 8: no thinking aloud, right day
+Based on call `call_dd41dc0e99c7b1dac2345c55bb2` (v7). The salon-owner caller booked a men's
+haircut fine, but then:
+- Sophia called the caller's words "a system note" / "pasted date info" out loud.
+- She switched the DialPilot call from the requested Saturday to Friday.
+- She narrated what she was checking and re-read the given phone number.
+
+Version 8, built on v7 (the DialPilot pitch and tools are kept):
+- Caller speech is never treated as system text, and she never comments on it.
+- No narration or reasoning (with a wrong/right example in the prompt).
+- She never switches day: an unavailable time gets the nearest times on the same day.
+- A given phone number is used as is.
+- DialPilot calls are checked on the day the caller names.
+
+**Not tested** (owner request). The live prompt is in `receptionist/prompt-live.md`.
+`deploy/build_retell.py` is outdated — it would remove the DialPilot tools.
+
 ## Update 2026-11-06 — no re-confirming at the end (version 5)
 - **Owner:** in the text chat, Sophia kept asking for confirmation again at the end.
 - **Fix:**

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Build (or update) the Luxe Hair Salon DEMO receptionist in Retell via the REST API.
+"""OUTDATED — DO NOT RUN as-is: live agent v6+ has DialPilot tools/prompt not in this script (see receptionist/prompt-live.md).
+
+Build (or update) the Luxe Hair Salon DEMO receptionist in Retell via the REST API.
 
 Usage: python3 -I clients/luxe-hair-salon/deploy/build_retell.py
 - Reads the prompt from receptionist/prompt.md and Cal.com event types from deploy/calcom/event-types.json.
